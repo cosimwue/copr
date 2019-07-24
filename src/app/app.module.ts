@@ -13,13 +13,14 @@ import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { SettingsComponent } from './components';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WebviewDirective
+    WebviewDirective,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
