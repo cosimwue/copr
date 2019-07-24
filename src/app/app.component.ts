@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ElectronService } from './providers/electron.service';
 import { Unit } from './models';
-
+import { AppConfig } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,15 @@ import { Unit } from './models';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  constructor(public electronService: ElectronService) {
+    if (electronService.isElectron()) {
+      console.log('Mode electron');
+      console.log('Electron ipcRenderer', electronService.ipcRenderer);
+      console.log('NodeJS childProcess', electronService.childProcess);
+    } else {
+      console.log('Mode web');
+    }
+  }
 
   public timeSteps(n: number): IterableIterator<number> {
     return Array(n).keys();
@@ -18,6 +28,7 @@ export class AppComponent implements OnInit {
     return attacker.force / attacked.size;
   }
 
+  /*
   public osipovBattle(attacker: Unit, attacked: Unit): Unit[] {
     let probabilityA = this.osipovProbability(a, b);
     let probabilityB = this.osipovProbability(b, a);
@@ -72,12 +83,11 @@ export class AppComponent implements OnInit {
     }
   }
   return (data.frame(r=r.size, b=b.size, t=1:length(r.size)))
-}
+  }*/
 
 
   public ngOnInit(): void {
     var a = new Unit(500, 0.7)
     var b = new Unit(800, 0.6)
-    console.log(JSON.stringify(this.lanchesterLaw(10, a, b)))
   }
 }

@@ -13,7 +13,7 @@ export class Unit {
 }
 
 
-
+/*
 
 
 #' time: int used to describe the amount of battle rounds/time units.
@@ -26,3 +26,4 @@ export class Unit {
 #' size.b2: int used to describe the size of the second part of the units on side b (default = 0).
 #' power.b2: float used to describe the power of the second part of the units on side b (default = 0).
 #' coeff.b2: float used to describe bonus/malus (armour, training, position) of a unit of the second part of side b (maximum = 1).
+*/
