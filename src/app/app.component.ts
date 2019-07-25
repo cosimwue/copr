@@ -83,8 +83,8 @@ export class AppComponent implements OnInit {
     }
   }
   return (data.frame(r=r.size, b=b.size, t=1:length(r.size)))
-  }*/
-
+  }
+  */
 
   public ngOnInit(): void {
     var a = new Unit(500, 0.7)
