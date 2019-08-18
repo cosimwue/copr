@@ -1,0 +1,54 @@
+<div class="container-fluid content">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-10" style="background-color: yellowgreen">
+      <object width="200" height="200"></object>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<div class="card footer">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <button
+            class="btn btn-light btn-left btn-battle"
+            placement="top"
+            ngbTooltip="Battle"
+            [openDelay]="500">
+            <img src="/assets/icons/military-men.svg" width="50">
+          </button>
+          <button
+            class="btn btn-light"
+            ngbTooltip="Capitulation"
+            [openDelay]="500">
+            <img src="/assets/icons/white-flag.svg" width="50">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!--
+<div class="card footer">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-4">
+        <button class="btn btn-danger">Attack</button>
+      </div>
+      <div class="col-4 center-block">
+        <button class="btn btn-light btn-clock disabled">
+          <i class="far fa-clock" style="margin-right: 5px;"></i>
+          <countdown
+            [config]="countdownConfig">
+          </countdown>  
+        </button>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-danger float-right">Capitulation</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->

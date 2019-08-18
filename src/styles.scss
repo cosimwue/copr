@@ -1,2 +1,15 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import '~bootstrap/scss/bootstrap';
+
+button:focus {
+    outline: none;
+}
+
+.content {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-left {
+    margin-right: 5px;
+}
