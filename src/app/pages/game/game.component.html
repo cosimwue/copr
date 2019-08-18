@@ -1,0 +1,36 @@
+<div class="container-fluid content">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-3">
+      <app-unit-stats
+        [unit]="a"
+      ></app-unit-stats>
+    </div>
+    <div class="col-5">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Blank_map_of_Europe_March_-_September_1939.svg">
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+  
+<div class="card footer">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-4">
+        <button class="btn btn-danger">Attack</button>
+      </div>
+      <div class="col-4 center-block">
+        <button class="btn btn-light btn-clock disabled">
+          <i class="far fa-clock" style="margin-right: 5px;"></i>
+          <countdown
+            [config]="countdownConfig">
+          </countdown>  
+        </button>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-danger float-right">Capitulation</button>
+      </div>
+    </div>
+  </div>
+</div>
+

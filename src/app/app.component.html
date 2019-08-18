@@ -1,32 +1,13 @@
 <nav class="navbar navbar-expand navbar-expand-lg navbar-light bg-light">
-  <span class="navbar-brand">COPR</span>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarContent"
-    aria-controls="navbarContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
+  <img class="navbar-brand" width="45" src="/assets/icons/general.svg">
   <div class="collapse navbar-collapse" id="navbarContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-    </ul>
-    <div class="my-2 my-lg-0">
-      <app-settings></app-settings>
+    <ul class="navbar-nav mr-auto"></ul>
+    <div class="navbar-nav my-2 my-lg-0">
+      <button class="btn btn-light btn-left" routerLink="/">
+        <i class="fas fa-undo"></i> Reset
+      </button>
+      <app-info></app-info>
     </div>
   </div>
 </nav>
-
-<div class="container-fluid">
-  <div class="col"></div>
-  <div class="col">
-    {{ title }}
-  </div>
-  <div class="col"></div>
-</div>
+<router-outlet></router-outlet>

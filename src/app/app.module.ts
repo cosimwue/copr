@@ -10,23 +10,32 @@ import { AppRoutingModule } from './app-routing.module';
 import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 import { AppComponent } from './app.component';
-import { SettingsComponent } from './components';
+import { InfoComponent } from './components';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CountdownModule } from 'ngx-countdown';
+
+import { HomeComponent } from './pages/home/home.component';
+import { GameComponent } from './pages/game/game.component';
+import { UnitStatsComponent } from './components/unit-stats/unit-stats.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WebviewDirective,
-    SettingsComponent
+    InfoComponent,
+    HomeComponent,
+    GameComponent,
+    UnitStatsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    CountdownModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

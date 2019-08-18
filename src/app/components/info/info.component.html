@@ -1,0 +1,38 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4
+      class="modal-title"
+      id="modal-basic-title">
+      About COPR
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+      This application was developed as a project of the master program Digital Humanities at the University of Würzburg by <a href="mailto:severin.simmler@stud-mail.uni-wuerzburg.de">Severin Simmler</a> in summer 2019.
+    </p>
+    <p>
+      Supervised by Dr. Steffen Pielström and PD Dr. Jorit Wintjes.
+    </p>
+    <hr>
+    <p>
+      Icons were made by Freepik from www.flaticon.com and are licensed by CC 3.0 BY.
+    </p>
+    <p>
+      This application is licensed by Apache 2.0.
+    </p>
+    </div>
+</ng-template>
+
+<button
+  type="button"
+  class="btn btn-light"
+  (click)="open(content)">
+  <i class="fas fa-info-circle"></i> About
+</button>

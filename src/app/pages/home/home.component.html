@@ -1,0 +1,107 @@
+<div class="container-fluid content">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-7">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><img width="35" src="/assets/icons/tent.svg"> Simulation Settings</h4>
+          <form class="card-text settings">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="army1">Army 1</label>
+                <input
+                  [(ngModel)]="settings.a"
+                  type="text"
+                  class="form-control"
+                  id="army1"
+                  name="army1">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="army2">Army 2</label>
+                <input
+                  [(ngModel)]="settings.b"
+                  type="text"
+                  class="form-control"
+                  id="army2"
+                  name="army2">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="law">Law</label>
+              <select
+                [(ngModel)]="settings.law"
+                class="custom-select"
+                id="law"
+                name="law">
+                <option value="Lanchester" selected>Lanchester</option>
+                <option value="Osipov">Osipov</option>
+                <option value="Custom">Custom</option>
+              </select>
+            </div>
+            <div class="form-group" *ngIf="settings.law === 'Custom'">
+              <textarea
+                class="form-control code-area"
+                rows="5">{{ settings.implementation }}</textarea>
+            </div>
+            <label>Details</label>
+            <ngb-tabset>
+              <ngb-tab title="Placeholder">
+                <ng-template ngbTabContent>
+                  A nice description.
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab [title]="settings.a">
+                <ng-template ngbTabContent>
+                  <div class="secret-content">
+                    <div class="form-group">
+                      <label for="army1">Total size</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="army1"
+                        name="army1">      
+                    </div>
+                    <div class="form-group">
+                      <label for="army1">Power</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="army1"
+                        name="army1">      
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab [title]="settings.b">
+                <ng-template ngbTabContent>
+                  <div class="secret-content">
+                    <div class="form-group">
+                      <label for="army1">Total size</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="army1"
+                        name="army1">      
+                    </div>
+                    <div class="form-group">
+                      <label for="army1">Power</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="army1"
+                        name="army1">      
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </form>
+          <button class="btn btn-secondary" (click)="startGame()">
+            Ludi publici!
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
