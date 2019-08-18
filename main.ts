@@ -14,8 +14,8 @@ function createWindow() {
   win = new BrowserWindow({
     x: 0,
     y: 0,
-    width: size.width - 100,
-    height: size.height - 100,
+    width: size.width - (size.width / 100 * 10),
+    height: size.height - (size.height / 100 * 10),
     webPreferences: {
       nodeIntegration: true,
     },
@@ -32,10 +32,6 @@ function createWindow() {
       protocol: 'file:',
       slashes: true
     }));
-  }
-
-  if (serve) {
-    win.webContents.openDevTools();
   }
 
   win.on('closed', () => {
