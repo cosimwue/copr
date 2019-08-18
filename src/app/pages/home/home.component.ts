@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { Settings } from '../../models';
+import { Settings, Unit } from '../../models';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { Settings } from '../../models';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  settings: Settings;
+  public settings: Settings;
 
   constructor(private router: Router) { }
 

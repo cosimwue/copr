@@ -1,10 +1,10 @@
 .footer {
-    width: 500px !important;
-    height: 80px;
+    width: 295px !important;
+    height: 105px;
     position: fixed;
     bottom: 15px;
     left: 50%;
-    margin-left: -250px;
+    margin-left: -172.5px;
 }
 
 .map {
@@ -19,4 +19,8 @@
     color: black;
     background-color: white;
     border: none;
+}
+
+.btn-battle {
+    margin-right: 100px;
 }
