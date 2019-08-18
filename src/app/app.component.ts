@@ -10,6 +10,9 @@ import { AppConfig } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public a: Unit;
+  public b: Unit;
+
   constructor(public electronService: ElectronService) {
     if (electronService.isElectron()) {
       console.log('Mode electron');
@@ -20,26 +23,15 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public timeSteps(n: number): IterableIterator<number> {
-    return Array(n).keys();
+  public timeSteps(n: number): Array<number> {
+    return Array.from(Array(n).keys());
   }
 
-  public osipovProbability(attacker: Unit, attacked: Unit): number {
-    return attacker.force / attacked.size;
-  }
-
-  /*
-  public osipovBattle(attacker: Unit, attacked: Unit): Unit[] {
-    let probabilityA = this.osipovProbability(a, b);
-    let probabilityB = this.osipovProbability(b, a);
-
-  }
-
-  public lanchesterLaw(time: number, a: Unit, b: Unit): Unit[] {
+  public lanchesterLaw(time: number, a: Unit, b: Unit): void {
     for (let step of this.timeSteps(time)) {
       if (a.size > 0 && b.size > 0) {
-        a.size = a.size - b.force;
-        b.size = b.size - a.force;
+        this.lanchesterBattle(a, b);
+        this.lanchesterBattle(b, a);
         if (a.size < 0) {
           a.size = 0;
         }
@@ -52,42 +44,43 @@ export class AppComponent implements OnInit {
         break;
       }
     }
-    return [a, b];
   }
 
-  public osipovLaw(time: number, a: Unit, b: Unit): Unit[] {
+  public osipovProbability(attacker: Unit, attacked: Unit): number {
+    return attacker.force / attacked.size;
+  }
+
+  public osipovBattle(attacker: Unit, attacked: Unit): Unit[] {
+    let probabilityA = this.osipovProbability(attacker, attacked);
+    let probabilityB = this.osipovProbability(attacked, attacker);
+    return [attacker, attacked];
+  }
+
+  public lanchesterBattle(attacker: Unit, attacked: Unit): void {
+    attacked.size = attacked.size - attacker.force;
+  }
+
+  public osipovLaw(time: number, a: Unit, b: Unit): void {
     for (let step of this.timeSteps(time)) {
-      this.osipovBattle(a, b);
-      this.osipovBattle(b, a);
-    }
-    return [a, b];
-  }
-
-
-  for (i in 1:time) {
-    prob.r <- prob.osipov(r, size.b1, power.b1, size.b2, power.b2)
-    prob.b <- prob.osipov(b, size.r, power.r)
-
-    size.r <- battle.osipov(size.r, coeff.r, prob.r)
-    size.b1 <- battle.osipov(size.b1, coeff.b1, prob.b)
-    size.b2 <- battle.osipov(size.b2, coeff.b2, prob.b)
-
-    r <- size.r
-    b <- size.b1 + size.b2
-
-    r.size <- c(r.size, r)
-    b.size <- c(b.size, b)
-
-    if (r == 0 | b == 0) {
-      break
+      if (a.size > 0 && b.size > 0) {
+        this.osipovBattle(a, b);
+        this.osipovBattle(b, a);
+        if (a.size < 0) {
+          a.size = 0;
+        }
+        if (b.size < 0) {
+          b.size = 0;
+        }
+        a.history.push(a.size);
+        b.history.push(b.size);
+      } else {
+        break;
+      }
     }
   }
-  return (data.frame(r=r.size, b=b.size, t=1:length(r.size)))
-  }*/
-
 
   public ngOnInit(): void {
-    var a = new Unit(500, 0.7)
-    var b = new Unit(800, 0.6)
+    this.a = new Unit(500, 0.7);
+    this.b = new Unit(800, 0.6);
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "copr",
   "version": "0.0.1",
-  "description": "COPRS – Simulating Conflicts",
+  "description": "COPR – Simulating Conflicts",
   "homepage": "https://github.com/cosimwue/copr",
   "author": {
     "name": "Severin Simmler",
@@ -78,6 +78,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
-    "@ng-bootstrap/ng-bootstrap": "^5.1.0"
+    "@ng-bootstrap/ng-bootstrap": "^5.1.0",
+    "bootstrap": "^4.3.1"
   }
 }
