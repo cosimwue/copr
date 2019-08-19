@@ -21,29 +21,31 @@ var single = [
 
 var multi = [
   {
-    "name": "Germany",
+    "name": "England",
     "series": [
       {
-        "name": "2010",
-        "value": 7300000
+        "name": "0",
+        "value": 1000
       },
       {
-        "name": "2011",
-        "value": 8940000
-      }
-    ]
-  },
-
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "2010",
-        "value": 7870000
+        "name": "1",
+        "value": 800
       },
       {
-        "name": "2011",
-        "value": 8270000
+        "name": "2",
+        "value": 600
+      },
+      {
+        "name": "3",
+        "value": 500
+      },
+      {
+        "name": "4",
+        "value": 500
+      },
+      {
+        "name": "5",
+        "value": 500
       }
     ]
   },
@@ -52,12 +54,28 @@ var multi = [
     "name": "France",
     "series": [
       {
-        "name": "2010",
-        "value": 5000002
+        "name": "0",
+        "value": 1000
       },
       {
-        "name": "2011",
-        "value": 5800000
+        "name": "1",
+        "value": 500
+      },
+      {
+        "name": "2",
+        "value": 300
+      },
+      {
+        "name": "3",
+        "value": 300
+      },
+      {
+        "name": "4",
+        "value": 200
+      },
+      {
+        "name": "5",
+        "value": 100
       }
     ]
   }
@@ -84,12 +102,12 @@ export class GameComponent implements OnInit {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Battle';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Army size, in persons';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#ff6666', '#aec6cf']
   };
 
   // line, area
