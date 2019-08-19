@@ -3,7 +3,7 @@
     <h4
       class="modal-title"
       id="modal-basic-title">
-      Battle: {{ settings.armyA.name }} vs. {{ settings.armyB.name }}
+      In pugnam proficisci
     </h4>
     <button
       type="button"
@@ -14,35 +14,51 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>{{ settings | json}}
-    </p>
-    <ngb-tabset>
-      <ngb-tab>
-        <ng-template ngbTabTitle><b>Secret Specifications</b></ng-template>
-        <ng-template ngbTabContent>
-          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-          dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-          iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab [title]="settings.armyA.name">
-        <ng-template ngbTabContent>
-          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-          dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-          iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab [title]="settings.armyB.name">
-        <ng-template ngbTabContent>
-          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-          dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-          iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-        </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
+    <div class="row content">
+      <div class="col">
+        <ngb-tabset>
+          <ngb-tab>
+            <ng-template ngbTabTitle><b>Secret Specifications</b></ng-template>
+            <ng-template ngbTabContent>
+              <div class="row content">
+                <div class="col">
+                  Set unit size.
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab [title]="settings.armyA.name">
+            <ng-template ngbTabContent>
+              <p>
+                <button class="btn btn-light btn-clock disabled">
+                  <i class="far fa-clock" style="margin-right: 5px;"></i>
+                  <countdown
+                    [config]="countdownConfig">
+                  </countdown>  
+                </button>
+              </p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab [title]="settings.armyB.name">
+            <ng-template ngbTabContent>
+              <p>
+                <button class="btn btn-light btn-clock disabled">
+                  <i class="far fa-clock" style="margin-right: 5px;"></i>
+                  <countdown
+                    [config]="countdownConfig">
+                  </countdown>  
+                </button>
+              </p>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+    <div class="row float-right">
+      <div class="col">
+        <button type="button" class="btn btn-danger">Pugna ut vincas</button>
+      </div>
+    </div>
   </div>
 </ng-template>
 

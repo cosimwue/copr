@@ -10,6 +10,7 @@ import { Settings } from '../../models';
 })
 export class BattleComponent {
   @Input('settings') settings: Settings;
+  public countdownConfig: any = {'leftTime': 120, 'template': '$!m!:$!s!'};
 
   constructor(private modalService: NgbModal) { }
 

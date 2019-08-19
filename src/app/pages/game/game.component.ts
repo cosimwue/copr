@@ -167,7 +167,8 @@ export class GameComponent implements OnInit {
     let armyB = new Army('France', 1000);
     let law = 'lanchester';
     let implementation = 'battle(attacker: Unit, attacked: Unit): void {\n    // Write your code in this block, for example:\n    attacked.size = attacked.size - attacker.force;\n}';
-    this.settings = new Settings(armyA, armyB, law, implementation);
+    let timePerBattle = 120;
+    this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
 
     /*this.a = new Unit('England', 500, 0.7);
     this.b = new Unit('France', 800, 0.6);
