@@ -4,34 +4,35 @@
     <div class="col-7">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title"><img width="35" src="/assets/icons/tent.svg"> Simulation Settings</h4>
+          <h4 class="card-title">
+            <img width="35" src="/assets/icons/tent.svg"> COPR: Simulation Settings
+          </h4>
           <form class="card-text settings">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="nameA">Army A</label>
                 <input
-                  [(ngModel)]="settings.nameA"
+                  [(ngModel)]="settings.armyA.name"
                   type="text"
                   class="form-control"
                   id="nameA"
                   name="nameA">
               </div>
               <div class="form-group col-md-6">
-                <label for="army2">Army B</label>
+                <label for="nameB">Army B</label>
                 <input
-                  [(ngModel)]="settings.nameB"
+                  [(ngModel)]="settings.armyB.name"
                   type="text"
                   class="form-control"
                   id="nameB"
-                  name="nameB"
-                  min="1">
+                  name="nameB">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="sizeA">Size</label>
                 <input
-                  [(ngModel)]="settings.sizeA"
+                  [(ngModel)]="settings.armyA.size"
                   type="number"
                   class="form-control"
                   id="sizeA"
@@ -41,7 +42,7 @@
               <div class="form-group col-md-6">
                 <label for="sizeB">Size</label>
                 <input
-                  [(ngModel)]="settings.sizeB"
+                  [(ngModel)]="settings.armyB.size"
                   type="number"
                   class="form-control"
                   id="sizeB"
@@ -49,31 +50,6 @@
                   min="0.1"
                   max="1"
                   step="0.1">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="powerA">Power</label>
-                <input
-                  [(ngModel)]="settings.powerA"
-                  type="number"
-                  class="form-control"
-                  id="powerA"
-                  name="powerA"
-                  min="0.1"
-                  max="1"
-                  step="0.1">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="powerB">Power</label>
-                <input
-                  [(ngModel)]="settings.powerB"
-                  type="number"
-                  class="form-control"
-                  id="powerB"
-                  name="powerB"
-                  min="0.00001"
-                  max="1">
               </div>
             </div>
             <div class="form-group">
@@ -90,7 +66,7 @@
               <div class="form-group stacked" *ngIf="settings.law === 'custom'">
                 <div class="alert alert-info implementation-alert" role="alert">
                   <p>
-                    You can implement your own function in TypeScript/JavaScript that models a battle between two hostile units.
+                    You can implement your own function in TypeScript/JavaScript that simulates a battle between two hostile units.
                   </p>
                   <div class="list-div">
                     A <code>Unit</code> object has basically three properties:
@@ -106,69 +82,9 @@
                   rows="4">{{ settings.implementation }}</textarea>
               </div>
             </div>
-            <!--
-            <ngb-tabset>
-              <ngb-tab title="Secret Settings">
-                <ng-template ngbTabContent>
-                  <div class="secret-content">
-                    Each side must secretly choose the total size of its army and the power of a single unit.
-                  </div>
-                </ng-template>
-              </ngb-tab>
-              <ngb-tab [title]="settings.nameA">
-                <ng-template ngbTabContent>
-                  <div class="secret-content">
-                    <div class="form-group">
-                      <label for="sizeA">Size</label>
-                      <input
-                        [(ngModel)]="settings.sizeA"
-                        type="number"
-                        class="form-control"
-                        id="sizeA"
-                        name="sizeA">      
-                    </div>
-                    <div class="form-group">
-                      <label for="powerA">Power</label>
-                      <input
-                        [(ngModel)]="settings.powerA"
-                        type="number"
-                        class="form-control"
-                        id="powerA"
-                        name="powerA">      
-                    </div>
-                  </div>
-                </ng-template>
-              </ngb-tab>
-              <ngb-tab [title]="settings.nameB">
-                <ng-template ngbTabContent>
-                  <div class="secret-content">
-                    <div class="form-group">
-                      <label for="sizeB">Size</label>
-                      <input
-                        [(ngModel)]="settings.sizeB"
-                        type="number"
-                        class="form-control"
-                        id="sizeB"
-                        name="sizeB">      
-                    </div>
-                    <div class="form-group">
-                      <label for="powerB">Power</label>
-                      <input
-                        [(ngModel)]="settings.powerB"
-                        type="number"
-                        class="form-control"
-                        id="powerB"
-                        name="powerB">
-                    </div>
-                  </div>
-                </ng-template>
-              </ngb-tab>
-            </ngb-tabset>
-            -->
           </form>
-          <hr>
           <button class="btn btn-secondary" (click)="startGame()">
-            Ludi publici
+            Ludi incipiant
           </button>
         </div>
       </div>
