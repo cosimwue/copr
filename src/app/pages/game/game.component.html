@@ -3,8 +3,9 @@
     <div class="col-2"></div>
     <div class="col-8 chart">
       <ngx-charts-line-chart
+        [legendTitle]="'Army'"
         [scheme]="colorScheme"
-        [results]="multi"
+        [results]="data"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
@@ -13,8 +14,8 @@
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel"
-        [autoScale]="autoScale"
-        (select)="onSelect($event)">
+        [xScaleMax]="20"
+        [autoScale]="autoScale">
       </ngx-charts-line-chart>
     </div>
     <div class="col-2"></div>
@@ -28,7 +29,8 @@
               <div class="col-2"></div>
               <div class="col text-center">
                 <app-battle
-                  [settings]="settings">
+                  [settings]="settings"
+                  (lossReport)="updateSize($event)">
                 </app-battle>
               </div>
               <div class="col-2"></div>
@@ -38,7 +40,6 @@
       </div>
       <div class="col-2"></div>
     </div>
-  
 </div>
 
 

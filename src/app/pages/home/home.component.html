@@ -5,7 +5,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">
-            <img width="35" src="/assets/icons/tent.svg"> COPR: Simulation Settings
+            <img width="35" src="/assets/icons/tent.svg"> Simulation Settings
           </h4>
           <form class="card-text settings">
             <div class="form-row">
@@ -87,13 +87,12 @@
                   <ul>
                     <li><code>size</code>: Total size, an integer.</li>
                     <li><code>power</code>: Fighting power, a float less or equal 1.</li>
-                    <li><code>force</code>: Loss of the hostile unit, is calculated as <code>size * power</code>.</li>
-                  </ul>      
+                  </ul>
                 </div>
               </div>
               <textarea
                 class="form-control code-area"
-                rows="4">{{ settings.implementation }}</textarea>
+                rows="5">{{ settings.implementation }}</textarea>
             </div>
           </form>
           <button class="btn btn-secondary" (click)="startGame()">

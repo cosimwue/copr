@@ -4,21 +4,6 @@ import { ElectronService } from '../../providers/electron.service';
 import { Unit, Settings, Army } from '../../models';
 import { Router } from '@angular/router';
 
-var single = [
-  {
-    "name": "Germany",
-    "value": 8940000
-  },
-  {
-    "name": "USA",
-    "value": 5000000
-  },
-  {
-    "name": "France",
-    "value": 7200000
-  }
-];
-
 var multi = [
   {
     "name": "England",
@@ -90,37 +75,45 @@ var multi = [
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  public a: Unit;
-  public b: Unit;
   public settings: any;
+  public data: any;
   public countdownConfig: any;
-
-  view: any[] = [800, 400];
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Battle';
-  showYAxisLabel = true;
-  yAxisLabel = 'Army size, in persons';
-
-  colorScheme = {
-    domain: ['#ff6666', '#aec6cf']
-  };
-
-  // line, area
-  autoScale = true;
+  public colorScheme: any;
+  public autoScale: boolean;
+  public showXAxis: boolean;
+  public showYAxis: boolean;
+  public gradient: boolean;
+  public showLegend: boolean;
+  public showXAxisLabel: boolean;
+  public showYAxisLabel: boolean;
+  public xAxisLabel: string;
+  public yAxisLabel: string;
 
   constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
+    /*const navigation = this.router.getCurrentNavigation();
     this.settings = navigation.extras.state as {
       test: string
-    };
+    };*/
+  }
 
-
-    Object.assign(this, {single, multi})
+  public updateSize(loss: any): void {
+    this.settings.armyA.size = this.settings.armyA.size - loss.a;
+    if (this.settings.armyA.size < 0) {
+      this.settings.armyA.size = 0;
+    }
+    this.data[0].series.push({
+      "name": this.data[0].series.length,
+      "value": this.settings.armyA.size
+    });
+    this.settings.armyB.size = this.settings.armyB.size - loss.b;
+    if (this.settings.armyB.size < 0) {
+      this.settings.armyB.size = 0;
+    }
+    this.data[1].series.push({
+      "name": this.data[1].series.length,
+      "value": this.settings.armyB.size
+    });
+    this.data = [...this.data];
   }
 
   /*
@@ -188,9 +181,36 @@ export class GameComponent implements OnInit {
     let timePerBattle = 120;
     this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
 
-    /*this.a = new Unit('England', 500, 0.7);
-    this.b = new Unit('France', 800, 0.6);
-    this.countdownConfig = {'leftTime': 120, 'template': '$!m!:$!s!'}*/
+    this.autoScale = false;
+    this.showXAxis = true;
+    this.showYAxis = true;
+    this.gradient = false;
+    this.showLegend = true;
+    this.showXAxisLabel = true;
+    this.showYAxisLabel = true;
+    this.xAxisLabel = 'Battle';
+    this.yAxisLabel = 'Army size, in persons';
+    this.colorScheme = {
+      domain: ['#ff6666', '#aec6cf']
+    };
+
+    this.data = [
+      {
+        "name": this.settings.armyA.name,
+        "series": [{
+          "name": 1,
+          "value": this.settings.armyA.size
+        }]
+      },
+      {
+        "name": this.settings.armyB.name,
+        "series": [{
+          "name": 1,
+          "value": this.settings.armyB.size
+        }]
+      }
+    ]
+  
   }
 
 }

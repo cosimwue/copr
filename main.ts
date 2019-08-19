@@ -21,7 +21,7 @@ function createWindow() {
     },
   });
 
-  //win.setMenuBarVisibility(false);
+  win.setMenuBarVisibility(false);
 
   if (serve) {
     require('electron-reload')(__dirname, {
