@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { Settings, Unit } from '../../models';
-
+import { Settings, Army } from '../../models';
 
 @Component({
   selector: 'app-home',
@@ -22,8 +21,12 @@ export class HomeComponent implements OnInit {
     this.router.navigate([`/game`], settings);
   }
 
-  ngOnInit() {
-    this.settings = new Settings();
+  public ngOnInit() {
+    let armyA = new Army('England', 1000);
+    let armyB = new Army('France', 1000);
+    let law = 'lanchester';
+    let implementation = 'battle(attacker: Unit, attacked: Unit): void {\n    // Write your code in this block, for example:\n    attacked.size = attacked.size - attacker.force;\n}';
+    this.settings = new Settings(armyA, armyB, law, implementation);
   }
 
 }

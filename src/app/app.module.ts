@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import '../polyfills';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -14,10 +15,12 @@ import { InfoComponent } from './components';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CountdownModule } from 'ngx-countdown';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import { HomeComponent } from './pages/home/home.component';
 import { GameComponent } from './pages/game/game.component';
 import { UnitStatsComponent } from './components/unit-stats/unit-stats.component';
+import { BattleComponent } from './components/battle/battle.component';
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { UnitStatsComponent } from './components/unit-stats/unit-stats.component
     InfoComponent,
     HomeComponent,
     GameComponent,
-    UnitStatsComponent
+    UnitStatsComponent,
+    BattleComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { UnitStatsComponent } from './components/unit-stats/unit-stats.component
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-    CountdownModule
+    CountdownModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

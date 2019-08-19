@@ -1,33 +1,46 @@
 <div class="container-fluid content">
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-10" style="background-color: yellowgreen">
-      <object width="200" height="200"></object>
+  <div class="row justify-content-center">
+    <div class="col-2"></div>
+    <div class="col-8 chart">
+      <ngx-charts-line-chart
+        [scheme]="colorScheme"
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [autoScale]="autoScale"
+        (select)="onSelect($event)">
+      </ngx-charts-line-chart>
     </div>
-    <div class="col"></div>
+    <div class="col-2"></div>
   </div>
-</div>
-<div class="card footer">
-    <div class="card-body">
-      <div class="row">
-        <div class="col">
-          <button
-            class="btn btn-light btn-left btn-battle"
-            placement="top"
-            ngbTooltip="Battle"
-            [openDelay]="500">
-            <img src="/assets/icons/military-men.svg" width="50">
-          </button>
-          <button
-            class="btn btn-light"
-            ngbTooltip="Capitulation"
-            [openDelay]="500">
-            <img src="/assets/icons/white-flag.svg" width="50">
-          </button>
+  <div class="row justify-content-center btn-row">
+    <div class="col-2"></div>
+      <div class="col-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col text-center">
+                <app-battle
+                  [settings]="settings">
+                </app-battle>
+              </div>
+              <div class="col-2"></div>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="col-2"></div>
     </div>
-  </div>
+  
+</div>
+
 
 
 <!--
