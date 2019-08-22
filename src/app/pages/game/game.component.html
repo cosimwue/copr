@@ -2,6 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-2"></div>
     <div class="col-8 chart">
+      <h2 style="margin-bottom: 30px;"><b>COPR Simulation</b>: {{ settings.armyA.name }} vs. {{ settings.armyB.name }}</h2>
       <ngx-charts-line-chart
         [legendTitle]="'Army'"
         [scheme]="colorScheme"
@@ -26,14 +27,22 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-2"></div>
+              <div class="col-2">
+                <span class="btn btn-light btn-men-left disabled">
+                  France is in the lead and has 500 more men.
+                </span>
+              </div>
               <div class="col text-center">
                 <app-battle
                   [settings]="settings"
                   (lossReport)="updateSize($event)">
                 </app-battle>
               </div>
-              <div class="col-2"></div>
+              <div class="col-2">
+                <span class="btn btn-light btn-men-right disabled">
+                  France is in the lead and has 500 more men.
+                </span>
+              </div>
             </div>
           </div>
         </div>

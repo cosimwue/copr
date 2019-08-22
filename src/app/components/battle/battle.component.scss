@@ -1,12 +1,5 @@
 .btn-battle {
     width: 150px;
-    background-color: #A9A9A9;
-    border-color: #A9A9A9;
-}
-
-.btn-battle:hover {
-    background-color: #808080;
-    border-color: #808080;
 }
 
 .btn-clock {
@@ -14,4 +7,8 @@
     color: black;
     background-color: white;
     border: none;
+}
+
+.invert {
+    filter: invert(1);
 }
