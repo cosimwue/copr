@@ -16,6 +16,7 @@ import { InfoComponent } from './components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CountdownModule } from 'ngx-countdown';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { ToastrModule } from 'ngx-toastr';
 
 import { HomeComponent } from './pages/home/home.component';
 import { GameComponent } from './pages/game/game.component';
@@ -41,7 +42,8 @@ import { BattleComponent } from './components/battle/battle.component';
     NgbModule,
     CountdownModule,
     NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

@@ -12,16 +12,15 @@ function createWindow() {
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width - 200,//(size.width / 100 * 2),
-    height: size.height - 70,//(size.height / 100 * 10),
+    center: true,
+    width: 1100,
+    height: 580,
     webPreferences: {
       nodeIntegration: true,
     },
   });
 
-  //win.setMenuBarVisibility(false);
+  win.setMenuBarVisibility(false);
 
   if (serve) {
     require('electron-reload')(__dirname, {

@@ -3,69 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service';
 import { Unit, Settings, Army } from '../../models';
 import { Router } from '@angular/router';
-
-var multi = [
-  {
-    "name": "England",
-    "series": [
-      {
-        "name": "0",
-        "value": 1000
-      },
-      {
-        "name": "1",
-        "value": 800
-      },
-      {
-        "name": "2",
-        "value": 600
-      },
-      {
-        "name": "3",
-        "value": 500
-      },
-      {
-        "name": "4",
-        "value": 500
-      },
-      {
-        "name": "5",
-        "value": 500
-      }
-    ]
-  },
-
-  {
-    "name": "France",
-    "series": [
-      {
-        "name": "0",
-        "value": 1000
-      },
-      {
-        "name": "1",
-        "value": 500
-      },
-      {
-        "name": "2",
-        "value": 300
-      },
-      {
-        "name": "3",
-        "value": 300
-      },
-      {
-        "name": "4",
-        "value": 200
-      },
-      {
-        "name": "5",
-        "value": 100
-      }
-    ]
-  }
-];
-
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -89,7 +27,7 @@ export class GameComponent implements OnInit {
   public xAxisLabel: string;
   public yAxisLabel: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private toastr: ToastrService) {
     /*const navigation = this.router.getCurrentNavigation();
     this.settings = navigation.extras.state as {
       test: string
@@ -174,8 +112,9 @@ export class GameComponent implements OnInit {
   }*/
 
   public ngOnInit(): void {
-    let armyA = new Army('England', 1000);
-    let armyB = new Army('France', 1000);
+    this.toastr.info('Belgium has won a total of 5 battles and has thus also won the war.', 'War is over!', {enableHtml: true, disableTimeOut: true, positionClass: 'toast-bottom-center'});
+    let armyA = new Army('Belgien', 500);
+    let armyB = new Army('Madagaskar', 580);
     let law = 'lanchester';
     let implementation = 'battle(attacker: Unit, attacked: Unit): void {\n    // Write your code in this block, for example:\n    attacked.size = attacked.size - attacker.force;\n}';
     let timePerBattle = 120;

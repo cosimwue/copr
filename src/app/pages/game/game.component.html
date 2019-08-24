@@ -1,8 +1,16 @@
 <div class="container-fluid content">
-  <div class="row justify-content-center">
-    <div class="col-2"></div>
-    <div class="col-8 chart">
-      <h2 style="margin-bottom: 30px;"><b>COPR Simulation</b>: {{ settings.armyA.name }} vs. {{ settings.armyB.name }}</h2>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col">
+      <h2 class="copr-heading">
+        <!--<b>Simulation</b>: {{ settings.armyA.name }} vs. {{ settings.armyB.name }}-->
+      </h2>
+    </div>
+    <div class="col-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-7 chart">
       <ngx-charts-line-chart
         [legendTitle]="'Army'"
         [scheme]="colorScheme"
@@ -10,7 +18,7 @@
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
-        [legend]="showLegend"
+        [legend]="false"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
@@ -19,8 +27,42 @@
         [autoScale]="autoScale">
       </ngx-charts-line-chart>
     </div>
-    <div class="col-2"></div>
+    <div class="col-3">
+      <div class="card legend">
+        <div class="card-body">
+          <div id="a">
+            <h5>
+              <i class="fas fa-square icon-a"></i> {{ settings.armyA.name }}
+            </h5>
+            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size > settings.armyB.size">Superior with </ng-container>
+            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size < settings.armyB.size">Inferior with </ng-container>
+            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size == settings.armyB.size">Equal with </ng-container>
+            <ng-container *ngIf="settings.armyA.size <= 0">Defeated with </ng-container>
+            {{ settings.armyA.size }} men.
+          </div>
+          <div id="b">
+            <h5>
+              <i class="fas fa-square icon-b"></i> {{ settings.armyB.name }}
+            </h5>
+            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size > settings.armyA.size">Superior with </ng-container>
+            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size < settings.armyA.size">Inferior with </ng-container>
+            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size == settings.armyA.size">Equal with </ng-container>
+            <ng-container *ngIf="settings.armyB.size <= 0">Defeated with </ng-container>
+            {{ settings.armyB.size }} men.
+          </div>
+        </div>
+      </div>
+      <div class="attack-btn">
+            <app-battle
+            [settings]="settings"
+            (lossReport)="updateSize($event)">
+          </app-battle>
+
+      </div>
+    </div>
+    <div class="col-1"></div>
   </div>
+  <!--
   <div class="row justify-content-center btn-row">
     <div class="col-2"></div>
       <div class="col-8">
@@ -49,7 +91,7 @@
       </div>
       <div class="col-2"></div>
     </div>
-</div>
+</div>-->
 
 
 
