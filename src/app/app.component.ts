@@ -11,7 +11,7 @@ export class AppComponent {
   public displayRestart: boolean;
 
   constructor(private router: Router) {
-    router.events.subscribe(_ => {
+    router.events.subscribe(() => {
       this.displayRestart = this.router.url != '/';
     })
   }

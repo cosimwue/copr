@@ -3,7 +3,7 @@
     <h4
       class="modal-title"
       id="modal-basic-title">
-      <img src="/assets/icons/cannon-pointing-right.svg" width="35"> In pugnam proficisci
+      <img src="/assets/cannon.svg" width="35"> In pugnam proficisci
     </h4>
     <button
       type="button"
@@ -22,7 +22,12 @@
             <ng-template ngbTabContent>
               <div class="row content">
                 <div class="col">
-                  Set unit size.
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="startBattle()">
+                    Attack!
+                  </button>
                 </div>
               </div>
             </ng-template>
@@ -30,7 +35,7 @@
           <ngb-tab [title]="settings.armyA.name">
             <ng-template ngbTabContent>
               <div class="form-row content">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label for="sizeA">Size</label>
                   <input
                     [(ngModel)]="unitA.size"
@@ -41,7 +46,7 @@
                     min="1">
                   <small class="text-mute">A total of {{ settings.armyA.size }} men are at your service.</small>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label for="powerA">Power</label>
                   <input
                     [(ngModel)]="unitA.power"
@@ -53,6 +58,17 @@
                     max="1"
                     step="0.1">
                   <small class="text-mute">The attack will take the enemy {{ unitA.size * unitA.power }} men.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="time">Remaining time</label><br>
+                  <button id="time" class="btn btn-light disabled float-right">
+                    <countdown
+                    [config]="countdownConfig"
+                    (start)="onStart()"
+                    (finished)="onFinished()"
+                    (notify)="onNotify($event)">
+                    </countdown>
+                  </button>
                 </div>
               </div>
               <!--
@@ -99,24 +115,12 @@
         </ngb-tabset>
       </div>
     </div>
-    <div class="row float-right">
-      <div class="col">
-        <button
-          type="button"
-          class="btn btn-danger"
-          (click)="startBattle()">
-          Attack!
-        </button>
-      </div>
-    </div>
   </div>
 </ng-template>
 
 <button
+  [disabled]="!enableBattle"
   class="btn btn-dark btn-left btn-battle"
-  placement="bottom"
-  ngbTooltip="Click this button to start a new battle"
-  (click)="open(content)"
-  [openDelay]="1000">
-  <img src="/assets/icons/soldier.svg" class="invert" width="50">
+  (click)="open(content)">
+  <img src="/assets/soldier.svg" class="invert" width="50">
 </button>

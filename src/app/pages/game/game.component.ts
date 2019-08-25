@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ElectronService } from '../../providers/electron.service';
-import { Unit, Settings, Army } from '../../models';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
+import { Settings, Army } from '../../models';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,14 +11,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  public settings: any;
-  public data: any;
-  public countdownConfig: any;
+  public enableBattle: boolean;
+  public settings: Settings;
+  public data: any[];
   public colorScheme: any;
   public autoScale: boolean;
   public showXAxis: boolean;
   public showYAxis: boolean;
   public gradient: boolean;
+  public xScaleMax: number;
   public showLegend: boolean;
   public showXAxisLabel: boolean;
   public showYAxisLabel: boolean;
@@ -29,15 +28,28 @@ export class GameComponent implements OnInit {
 
   constructor(private router: Router, private toastr: ToastrService) {
     /*const navigation = this.router.getCurrentNavigation();
-    this.settings = navigation.extras.state as {
-      test: string
-    };*/
+    let settings = navigation.extras.state;
+    this.settings = new Settings(
+      settings.armyA,
+      settings.armyB,
+      settings.law,
+      settings.implementation,
+      settings.timePerBattle
+    );*/
+    let armyA = new Army('England', 1000);
+    let armyB = new Army('France', 1000);
+    let law = 'lanchester';
+    let implementation = 'loss(attacker: Unit, attacked: Unit): number {\n  // The function returns the loss of the attacked unit\n  return attacker.size * attacker.power;\n}';
+    let timePerBattle = 120;
+    this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
   }
 
   public updateSize(loss: any): void {
     this.settings.armyA.size = this.settings.armyA.size - loss.a;
-    if (this.settings.armyA.size < 0) {
+    if (this.settings.armyA.size <= 0) {
       this.settings.armyA.size = 0;
+      this.enableBattle = false;
+      this.gameOver(this.settings.armyB);
     }
     this.data[0].series.push({
       "name": this.data[0].series.length,
@@ -46,93 +58,43 @@ export class GameComponent implements OnInit {
     this.settings.armyB.size = this.settings.armyB.size - loss.b;
     if (this.settings.armyB.size < 0) {
       this.settings.armyB.size = 0;
+      this.enableBattle = false;
+      this.gameOver(this.settings.armyA);
     }
     this.data[1].series.push({
       "name": this.data[1].series.length,
       "value": this.settings.armyB.size
     });
     this.data = [...this.data];
-  }
 
-  /*
-  public timeSteps(n: number): Array<number> {
-    return Array.from(Array(n).keys());
-  }
-
-  public lanchesterLaw(time: number, a: Unit, b: Unit): void {
-    for (let step of this.timeSteps(time)) {
-      if (a.size > 0 && b.size > 0) {
-        this.lanchesterBattle(a, b);
-        this.lanchesterBattle(b, a);
-        if (a.size < 0) {
-          a.size = 0;
-        }
-        if (b.size < 0) {
-          b.size = 0;
-        }
-        a.history.push(a.size);
-        b.history.push(b.size);
-      } else {
-        break;
-      }
+    // Count wins
+    if (loss.b > loss.a) {
+      this.settings.armyA.wins += 1
+    } else if (loss.a > loss.b) {
+      this.settings.armyB.wins += 1
     }
   }
 
-  public osipovProbability(attacker: Unit, attacked: Unit): number {
-    return attacker.force / attacked.size;
+  private gameOver(winner: Army): void {
+    let heading = 'War is over!';
+    let message = `${winner.name} has won a total of ${winner.wins} battles and has thus also won the war.`;
+    this.toastr.success(message, heading, {disableTimeOut: true, positionClass: 'toast-bottom-center'});
   }
 
-  public osipovBattle(attacker: Unit, attacked: Unit): Unit[] {
-    let probabilityA = this.osipovProbability(attacker, attacked);
-    let probabilityB = this.osipovProbability(attacked, attacker);
-    return [attacker, attacked];
-  }
-
-  public lanchesterBattle(attacker: Unit, attacked: Unit): void {
-    attacked.size = attacked.size - attacker.force;
-  }
-
-  public osipovLaw(time: number, a: Unit, b: Unit): void {
-    for (let step of this.timeSteps(time)) {
-      if (a.size > 0 && b.size > 0) {
-        this.osipovBattle(a, b);
-        this.osipovBattle(b, a);
-        if (a.size < 0) {
-          a.size = 0;
-        }
-        if (b.size < 0) {
-          b.size = 0;
-        }
-        a.history.push(a.size);
-        b.history.push(b.size);
-      } else {
-        break;
-      }
-    }
-  }*/
-
-  public ngOnInit(): void {
-    this.toastr.info('Belgium has won a total of 5 battles and has thus also won the war.', 'War is over!', {enableHtml: true, disableTimeOut: true, positionClass: 'toast-bottom-center'});
-    let armyA = new Army('Belgien', 500);
-    let armyB = new Army('Madagaskar', 580);
-    let law = 'lanchester';
-    let implementation = 'battle(attacker: Unit, attacked: Unit): void {\n    // Write your code in this block, for example:\n    attacked.size = attacked.size - attacker.force;\n}';
-    let timePerBattle = 120;
-    this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
-
+  private setupPlot(): void {
     this.autoScale = false;
     this.showXAxis = true;
     this.showYAxis = true;
     this.gradient = false;
-    this.showLegend = true;
+    this.showLegend = false;
     this.showXAxisLabel = true;
     this.showYAxisLabel = true;
+    this.xScaleMax = 20;
     this.xAxisLabel = 'Battle';
     this.yAxisLabel = 'Army size, in persons';
     this.colorScheme = {
       domain: ['#ff6666', '#aec6cf']
     };
-
     this.data = [
       {
         "name": this.settings.armyA.name,
@@ -148,8 +110,12 @@ export class GameComponent implements OnInit {
           "value": this.settings.armyB.size
         }]
       }
-    ]
-  
+    ];
+  }
+
+  public ngOnInit(): void {
+    this.enableBattle = true;
+    this.setupPlot();
   }
 
 }

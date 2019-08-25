@@ -14,11 +14,18 @@ button:focus {
     margin-right: 5px;
 }
 
-.toast-info {
+.toast-success {
     background-image: none !important;
+    background-color: #f0ad4e !important;
+    width: 600px !important;
 }
 
 .toast-info {
-    background-color:   #f0ad4e !important;
+    background-image: none !important;
+    width: 600px !important;
+}
+
+.toast-error {
+    background-image: none !important;
     width: 600px !important;
 }

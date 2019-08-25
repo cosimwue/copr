@@ -11,17 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 import { AppComponent } from './app.component';
-import { InfoComponent } from './components';
+import { InfoComponent, BattleComponent } from './components';
+import { HomeComponent, GameComponent } from './pages';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CountdownModule } from 'ngx-countdown';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ToastrModule } from 'ngx-toastr';
-
-import { HomeComponent } from './pages/home/home.component';
-import { GameComponent } from './pages/game/game.component';
-import { UnitStatsComponent } from './components/unit-stats/unit-stats.component';
-import { BattleComponent } from './components/battle/battle.component';
 
 
 @NgModule({
@@ -31,7 +27,6 @@ import { BattleComponent } from './components/battle/battle.component';
     InfoComponent,
     HomeComponent,
     GameComponent,
-    UnitStatsComponent,
     BattleComponent
   ],
   imports: [

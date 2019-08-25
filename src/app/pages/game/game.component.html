@@ -1,29 +1,19 @@
 <div class="container-fluid content">
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col">
-      <h2 class="copr-heading">
-        <!--<b>Simulation</b>: {{ settings.armyA.name }} vs. {{ settings.armyB.name }}-->
-      </h2>
-    </div>
-    <div class="col-1"></div>
-  </div>
-  <div class="row">
+  <div class="row battle-row">
     <div class="col-1"></div>
     <div class="col-7 chart">
       <ngx-charts-line-chart
-        [legendTitle]="'Army'"
         [scheme]="colorScheme"
         [results]="data"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
-        [legend]="false"
+        [legend]="showLegend"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel"
-        [xScaleMax]="20"
+        [xScaleMax]="xScaleMax"
         [autoScale]="autoScale">
       </ngx-charts-line-chart>
     </div>
@@ -53,67 +43,12 @@
         </div>
       </div>
       <div class="attack-btn">
-            <app-battle
-            [settings]="settings"
-            (lossReport)="updateSize($event)">
-          </app-battle>
-
+        <app-battle
+          [enableBattle]="enableBattle"
+          [settings]="settings"
+          (lossReport)="updateSize($event)">
+        </app-battle>
       </div>
     </div>
     <div class="col-1"></div>
   </div>
-  <!--
-  <div class="row justify-content-center btn-row">
-    <div class="col-2"></div>
-      <div class="col-8">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-2">
-                <span class="btn btn-light btn-men-left disabled">
-                  France is in the lead and has 500 more men.
-                </span>
-              </div>
-              <div class="col text-center">
-                <app-battle
-                  [settings]="settings"
-                  (lossReport)="updateSize($event)">
-                </app-battle>
-              </div>
-              <div class="col-2">
-                <span class="btn btn-light btn-men-right disabled">
-                  France is in the lead and has 500 more men.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-2"></div>
-    </div>
-</div>-->
-
-
-
-<!--
-<div class="card footer">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-4">
-        <button class="btn btn-danger">Attack</button>
-      </div>
-      <div class="col-4 center-block">
-        <button class="btn btn-light btn-clock disabled">
-          <i class="far fa-clock" style="margin-right: 5px;"></i>
-          <countdown
-            [config]="countdownConfig">
-          </countdown>  
-        </button>
-      </div>
-      <div class="col-4">
-        <button class="btn btn-danger float-right">Capitulation</button>
-      </div>
-    </div>
-  </div>
-</div>
--->

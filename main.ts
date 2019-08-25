@@ -11,9 +11,9 @@ function createWindow() {
     center: true,
     resizable: false,
     fullscreenable: false,
-    icon: path.join(__dirname, 'src/assets/icons/military-strategy-sketch.svg'),
-    width: 1100,
-    height: 580,
+    icon: path.join(__dirname, 'src/assets/copr-logo.svg'),
+    width: 1200,
+    height: 630,
     webPreferences: {
       nodeIntegration: true,
     },

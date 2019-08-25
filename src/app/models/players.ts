@@ -8,14 +8,17 @@ export class Unit {
   }
 }
 
+
 export class Army {
   name: string
   size: number
   history: Array<number>
+  wins: number
 
   constructor(name: string, size: number) {
     this.name = name;
     this.size = size;
     this.history = [size];
+    this.wins = 0;
   }
 }

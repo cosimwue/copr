@@ -5,7 +5,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">
-            <img width="35" src="/assets/icons/tent.svg"> Simulation Settings
+            <img width="35" src="/assets/tent.svg"> Simulation Settings
           </h4>
           <form class="card-text settings">
             <div class="form-row">
@@ -47,9 +47,7 @@
                   class="form-control"
                   id="sizeB"
                   name="sizeB"
-                  min="0.1"
-                  max="1"
-                  step="0.1">
+                  min="1">
               </div>
             </div>
             <hr>
@@ -77,13 +75,13 @@
                   min="1">
               </div>
             </div>
-            <div class="form-group" *ngIf="settings.law === 'custom'">
+            <div class="form-group implementation" *ngIf="settings.law === 'custom'">
               <div class="alert alert-info" role="alert">
                 <p>
-                  You can implement your own function in TypeScript/JavaScript that simulates a battle between two hostile units.
+                  You can implement your own function in TypeScript/JavaScript that calculates the loss of a unit.
                 </p>
                 <div class="list-div">
-                  A <code>Unit</code> object has basically three properties:
+                  A <code>Unit</code> object has two properties:
                   <ul>
                     <li><code>size</code>: Total size, an integer.</li>
                     <li><code>power</code>: Fighting power, a float less or equal 1.</li>
@@ -92,7 +90,7 @@
               </div>
               <textarea
                 class="form-control code-area"
-                rows="5">{{ settings.implementation }}</textarea>
+                rows="4">{{ settings.implementation }}</textarea>
             </div>
           </form>
           <button class="btn btn-secondary" (click)="startGame()">
