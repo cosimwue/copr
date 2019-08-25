@@ -24,7 +24,7 @@
                 <div class="col">
                   <button
                     type="button"
-                    class="btn btn-danger"
+                    class="btn  btn-lg btn-danger"
                     (click)="startBattle()">
                     Attack!
                   </button>
@@ -35,10 +35,11 @@
           <ngb-tab [title]="settings.armyA.name">
             <ng-template ngbTabContent>
               <div class="form-row content">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                   <label for="sizeA">Size</label>
                   <input
                     [(ngModel)]="unitA.size"
+                    [disabled]="formDisableA"
                     type="number"
                     class="form-control"
                     id="sizeA"
@@ -46,10 +47,11 @@
                     min="1">
                   <small class="text-mute">A total of {{ settings.armyA.size }} men are at your service.</small>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                   <label for="powerA">Power</label>
                   <input
                     [(ngModel)]="unitA.power"
+                    [disabled]="formDisableA"
                     type="number"
                     class="form-control"
                     id="powerA"
@@ -57,29 +59,22 @@
                     min="0.1"
                     max="1"
                     step="0.1">
-                  <small class="text-mute">The attack will take the enemy {{ unitA.size * unitA.power }} men.</small>
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="time">Remaining time</label><br>
-                  <button id="time" class="btn btn-light disabled float-right">
-                    <countdown
-                    [config]="countdownConfig"
-                    (start)="onStart()"
-                    (finished)="onFinished()"
-                    (notify)="onNotify($event)">
-                    </countdown>
-                  </button>
+                  <small *ngIf="settings.law === 'lanchester'" class="text-mute">The attack will take the enemy {{ unitA.size * unitA.power }} men.</small>
+                  <small *ngIf="settings.law === 'osipov'" class="text-mute">The attack will take the enemy {{ (unitA.size * unitA.power) / unitB.size }} men.</small>
                 </div>
               </div>
-              <!--
-              <p>
-                <button class="btn btn-light btn-clock disabled">
-                  <i class="far fa-clock" style="margin-right: 5px;"></i>
-                  <countdown
-                    [config]="countdownConfig">
-                  </countdown>  
-                </button>
-              </p>-->
+              <div class="row">
+                <div class="col">
+                  <ngb-progressbar type="info" [value]="timeLeftA"></ngb-progressbar>
+                  <span style="display: none;">
+                    <countdown
+                      [config]="countdownConfigA"
+                      (notify)="updateProgressA()"
+                      (finished)="disableA()">
+                    </countdown>
+                  </span>
+                </div>
+              </div>
             </ng-template>
           </ngb-tab>
           <ngb-tab [title]="settings.armyB.name">
@@ -108,6 +103,17 @@
                     max="1"
                     step="0.1">
                   <small class="text-mute">The attack will take the enemy {{ unitB.size * unitB.power }} men.</small>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button class="btn btn-light btn-clock disabled">
+                    <i class="far fa-clock clock"></i>
+                    <countdown
+                      [config]="countdownConfigB"
+                      (finished)="disableB()">
+                    </countdown>
+                  </button>
                 </div>
               </div>
             </ng-template>

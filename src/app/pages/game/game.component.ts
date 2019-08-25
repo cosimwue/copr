@@ -39,12 +39,17 @@ export class GameComponent implements OnInit {
     let armyA = new Army('England', 1000);
     let armyB = new Army('France', 1000);
     let law = 'lanchester';
-    let implementation = 'loss(attacker: Unit, attacked: Unit): number {\n  // The function returns the loss of the attacked unit\n  return attacker.size * attacker.power;\n}';
+    let implementation = 'TODO';
     let timePerBattle = 120;
     this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
   }
 
   public updateSize(loss: any): void {
+    if (loss.b > loss.a) {
+      this.settings.armyA.wins += 1
+    } else if (loss.a > loss.b) {
+      this.settings.armyB.wins += 1
+    }
     this.settings.armyA.size = this.settings.armyA.size - loss.a;
     if (this.settings.armyA.size <= 0) {
       this.settings.armyA.size = 0;
@@ -66,13 +71,6 @@ export class GameComponent implements OnInit {
       "value": this.settings.armyB.size
     });
     this.data = [...this.data];
-
-    // Count wins
-    if (loss.b > loss.a) {
-      this.settings.armyA.wins += 1
-    } else if (loss.a > loss.b) {
-      this.settings.armyB.wins += 1
-    }
   }
 
   private gameOver(winner: Army): void {

@@ -3,6 +3,7 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Settings, Unit } from '../../models';
 
+
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
@@ -12,110 +13,111 @@ export class BattleComponent implements OnInit {
   @Input('settings') settings: Settings;
   @Input('enableBattle') enableBattle: boolean;
   @Output('lossReport') lossReport: EventEmitter<any>;
+  public notifications: number[];
   public unitA: Unit;
   public unitB: Unit;
-  public countdownConfig: any;
+  public countdownConfigA: any;
+  public countdownConfigB: any;
+  public formDisableA: boolean;
+  public formDisableB: boolean;
+  public timeLeftA: number;
+  public timeLeftB: number;
 
   constructor(private modalService: NgbModal) {
     this.lossReport = new EventEmitter<any>();
   }
 
-  public open(content: any) {
-    this.modalService.open(content, { size: 'lg' });
+  private getSeconds(n: number): number[] {
+    return Array.from({length: n}, (_, k) => k + 1);
   }
 
-  public startBattle(attack: string): void {
+  public open(content: any): void {
+    this.modalService.open(content, { size: 'lg' });
+    this.timeLeftA = this.settings.timePerBattle / 100;
+    this.timeLeftB = this.settings.timePerBattle;
+    this.formDisableA = false;
+    this.formDisableB = false;
+    this.countdownConfigA = {
+      notify: this.notifications,
+      leftTime: this.settings.timePerBattle,
+      template: '$!m!:$!s!'
+    };
+    this.countdownConfigB = {
+      notify: this.notifications,
+      leftTime: this.settings.timePerBattle,
+      template: '$!m!:$!s!'
+    };
+  }
+
+  public disableA(): void {
+    this.formDisableA = true;
+    this.countdownConfigA = {
+      leftTime: 0,
+      template: '$!m!:$!s!'
+    };
+  }
+
+  public disableB(): void {
+    this.formDisableB = true;
+    this.countdownConfigB = {
+      leftTime: 0,
+      template: '$!m!:$!s!'
+    };
+  }
+
+  public startBattle(): void {
     this.modalService.dismissAll();
     if (this.settings.law === 'lanchester') {
-      var loss = this.lanchesterLaw(this.unitA, this.unitB)
+      var loss = this.lanchesterLaw(this.unitA, this.unitB);
     } else if (this.settings.law === 'osipov') {
-      console.log("osipov")
+      var loss = this.osipovLaw(this.unitA, this.unitB);
     } else if (this.settings.law === 'custom') {
-      var battle = eval(this.settings.implementation);
-      // TODO
+      var loss = this.customLaw(this.unitA, this.unitB);
     }
     this.lossReport.emit(loss);
   }
 
   public lanchesterLaw(a: Unit, b: Unit): any {
-    if (a.size > 0 && b.size > 0) {
-      var lossA = this.lanchesterLoss(b, a);
-      var lossB = this.lanchesterLoss(a, b);
-      if (a.size < 0) {
-        a.size = 0;
-      }
-      if (b.size < 0) {
-        b.size = 0;
-      }
-    }
+    let lossA = this.lanchesterLoss(b);
+    let lossB = this.lanchesterLoss(a);
     return {'a': lossA, 'b': lossB};
   }
 
-  public lanchesterLoss(attacker: Unit, attacked: Unit): number {
+  public osipovLaw(a: Unit, b: Unit): any {
+    let lossA = this.osipovLoss(b, a);
+    let lossB = this.osipovLoss(a, b);
+    return {'a': lossA, 'b': lossB};
+  }
+
+  public customLaw(a: Unit, b: Unit): any {
+    let customLoss = eval(this.settings.implementation);
+    let lossA = customLoss(b, a);
+    let lossB = customLoss(a, b);
+    return {'a': lossA, 'b': lossB};
+  }
+
+  public lanchesterLoss(attacker: Unit): number {
     return attacker.size * attacker.power;
   }
 
-  /*
-  public timeSteps(n: number): Array<number> {
-    return Array.from(Array(n).keys());
+  public osipovLoss(attacker: Unit, attacked: Unit): number {
+    return (attacker.power * attacker.size) / attacked.size;
   }
 
-  public lanchesterLaw(time: number, a: Unit, b: Unit): void {
-    for (let step of this.timeSteps(time)) {
-      if (a.size > 0 && b.size > 0) {
-        this.lanchesterBattle(a, b);
-        this.lanchesterBattle(b, a);
-        if (a.size < 0) {
-          a.size = 0;
-        }
-        if (b.size < 0) {
-          b.size = 0;
-        }
-        a.history.push(a.size);
-        b.history.push(b.size);
-      } else {
-        break;
-      }
-    }
+  public updateProgressA(): void {
+    this.timeLeftA -= 0.1;
   }
 
-  public osipovProbability(attacker: Unit, attacked: Unit): number {
-    return attacker.force / attacked.size;
+  public updateProgressB(): void {
+    this.timeLeftB -= 1;
   }
-
-  public osipovBattle(attacker: Unit, attacked: Unit): Unit[] {
-    let probabilityA = this.osipovProbability(attacker, attacked);
-    let probabilityB = this.osipovProbability(attacked, attacker);
-    return [attacker, attacked];
-  }
-
-  public lanchesterBattle(attacker: Unit, attacked: Unit): void {
-    attacked.size = attacked.size - attacker.force;
-  }
-
-  public osipovLaw(time: number, a: Unit, b: Unit): void {
-    for (let step of this.timeSteps(time)) {
-      if (a.size > 0 && b.size > 0) {
-        this.osipovBattle(a, b);
-        this.osipovBattle(b, a);
-        if (a.size < 0) {
-          a.size = 0;
-        }
-        if (b.size < 0) {
-          b.size = 0;
-        }
-        a.history.push(a.size);
-        b.history.push(b.size);
-      } else {
-        break;
-      }
-    }
-  }*/
 
   public ngOnInit(): void {
-    this.unitA = new Unit(100, 0.8);
-    this.unitB = new Unit(200, 0.5);
-    this.countdownConfig = {'leftTime': 120, 'template': '$!m!:$!s!'};
+    let sizeA = (this.settings.armyA.size / 100) * 10;
+    let sizeB = (this.settings.armyB.size / 100) * 10;
+    this.unitA = new Unit(sizeA, 0.5);
+    this.unitB = new Unit(sizeB, 0.5);
+    this.notifications = this.getSeconds(this.settings.timePerBattle);
   }
 
 }
