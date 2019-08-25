@@ -1,5 +1,5 @@
 {
-  "productName": "copr",
+  "productName": "COPR",
   "directories": {
     "output": "release/"
   },
@@ -13,9 +13,7 @@
         "!src/",
         "!hooks/",
         "!angular.json",
-        "!karma.conf.js",
-        "!tsconfig.json",
-        "!tslint.json"
+        "!tsconfig.json"
     ],
   "win": {
     "icon": "dist",
