@@ -3,7 +3,7 @@
     <h4
       class="modal-title"
       id="modal-basic-title">
-      <img src="/assets/cannon.svg" width="35"> In pugnam proficisci
+      <img src="/assets/cannon.svg" width="35">
     </h4>
     <button
       type="button"
@@ -65,14 +65,13 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <ngb-progressbar type="info" [value]="timeLeftA"></ngb-progressbar>
-                  <span style="display: none;">
+                  <button class="btn btn-light btn-clock disabled">
+                    <i class="far fa-clock clock"></i>
                     <countdown
                       [config]="countdownConfigA"
-                      (notify)="updateProgressA()"
-                      (finished)="disableA()">
+                      (finished)="disableForms('a')">
                     </countdown>
-                  </span>
+                  </button>
                 </div>
               </div>
             </ng-template>
@@ -111,7 +110,7 @@
                     <i class="far fa-clock clock"></i>
                     <countdown
                       [config]="countdownConfigB"
-                      (finished)="disableB()">
+                      (finished)="disableForms('b')">
                     </countdown>
                   </button>
                 </div>

@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     let armyA = new Army('England', 1000);
     let armyB = new Army('France', 1000);
     let law = 'lanchester';
-    let implementation = 'loss(attacker: Unit, attacked: Unit): number {\n  // The function returns the loss of the attacked unit\n  return attacker.size * attacker.power;\n}';
+    let implementation = 'return attacker.size * attacker.power;';
     let timePerBattle = 120;
     this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
   }

@@ -77,20 +77,25 @@
             </div>
             <div class="form-group implementation" *ngIf="settings.law === 'custom'">
               <div class="alert alert-info" role="alert">
+                <h6 class="alert-heading">
+                  Implement a function in JavaScript that calculates the attrition of a unit.
+                </h6>
                 <p>
-                  You can implement your own function in TypeScript/JavaScript that calculates the loss of a unit.
+                  The function provides an <code>attacker</code> and an <code>attacked</code> object with the following properties:
                 </p>
-                <div class="list-div">
-                  A <code>Unit</code> object has two properties:
-                  <ul>
-                    <li><code>size</code>: Total size, an integer.</li>
-                    <li><code>power</code>: Fighting power, a float less or equal 1.</li>
-                  </ul>
-                </div>
+                <ul>
+                  <li><code>size</code>: Total size of the unit, an integer > 0.</li>
+                  <li><code>power</code>: Fighting power, a float > 0 and ≤ 1.</li>
+                </ul>
+                <p class="mb-0">
+                  <i class="fas fa-exclamation-circle"></i> Write only the function’s body and return an integer, the attrition.
+                </p>
               </div>
               <textarea
+                [(ngModel)]="settings.implementation"
+                name="implementation"
                 class="form-control code-area"
-                rows="4">{{ settings.implementation }}</textarea>
+                rows="3"></textarea>
             </div>
           </form>
           <button class="btn btn-secondary" (click)="startGame()">

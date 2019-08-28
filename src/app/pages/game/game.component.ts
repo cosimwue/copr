@@ -27,7 +27,7 @@ export class GameComponent implements OnInit {
   public yAxisLabel: string;
 
   constructor(private router: Router, private toastr: ToastrService) {
-    /*const navigation = this.router.getCurrentNavigation();
+    const navigation = this.router.getCurrentNavigation();
     let settings = navigation.extras.state;
     this.settings = new Settings(
       settings.armyA,
@@ -35,40 +35,40 @@ export class GameComponent implements OnInit {
       settings.law,
       settings.implementation,
       settings.timePerBattle
-    );*/
+    );/*
     let armyA = new Army('England', 1000);
     let armyB = new Army('France', 1000);
     let law = 'lanchester';
     let implementation = 'TODO';
     let timePerBattle = 120;
-    this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
+    this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);*/
   }
 
-  public updateSize(loss: any): void {
-    if (loss.b > loss.a) {
+  public updateSize(attrition: any): void {
+    if (attrition.b > attrition.a) {
       this.settings.armyA.wins += 1
-    } else if (loss.a > loss.b) {
+    } else if (attrition.a > attrition.b) {
       this.settings.armyB.wins += 1
     }
-    this.settings.armyA.size = this.settings.armyA.size - loss.a;
+    this.settings.armyA.size = this.settings.armyA.size - attrition.a;
     if (this.settings.armyA.size <= 0) {
       this.settings.armyA.size = 0;
       this.enableBattle = false;
       this.gameOver(this.settings.armyB);
     }
     this.data[0].series.push({
-      "name": this.data[0].series.length,
-      "value": this.settings.armyA.size
+      'name': this.data[0].series.length,
+      'value': this.settings.armyA.size
     });
-    this.settings.armyB.size = this.settings.armyB.size - loss.b;
-    if (this.settings.armyB.size < 0) {
+    this.settings.armyB.size = this.settings.armyB.size - attrition.b;
+    if (this.settings.armyB.size <= 0) {
       this.settings.armyB.size = 0;
       this.enableBattle = false;
       this.gameOver(this.settings.armyA);
     }
     this.data[1].series.push({
-      "name": this.data[1].series.length,
-      "value": this.settings.armyB.size
+      'name': this.data[1].series.length,
+      'value': this.settings.armyB.size
     });
     this.data = [...this.data];
   }
@@ -95,17 +95,17 @@ export class GameComponent implements OnInit {
     };
     this.data = [
       {
-        "name": this.settings.armyA.name,
-        "series": [{
-          "name": 1,
-          "value": this.settings.armyA.size
+        'name': this.settings.armyA.name,
+        'series': [{
+          'name': 1,
+          'value': this.settings.armyA.size
         }]
       },
       {
-        "name": this.settings.armyB.name,
-        "series": [{
-          "name": 1,
-          "value": this.settings.armyB.size
+        'name': this.settings.armyB.name,
+        'series': [{
+          'name': 1,
+          'value': this.settings.armyB.size
         }]
       }
     ];

@@ -85,6 +85,7 @@
     "jquery": "^3.4.1",
     "ngx-countdown": "^3.2.0",
     "ngx-toastr": "^10.1.0",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "random": "^2.1.1"
   }
 }
