@@ -13,7 +13,7 @@ function createWindow() {
     fullscreenable: false,
     icon: path.join(__dirname, 'src/assets/copr-logo.svg'),
     width: 1200,
-    height: 630,
+    height: 640,
     webPreferences: {
       nodeIntegration: true,
     },

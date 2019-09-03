@@ -1,4 +1,4 @@
-<div class="container-fluid content">
+<div class="container-fluid" style="margin-top: 18px;">
   <div class="row">
     <div class="col"></div>
     <div class="col-7">
@@ -50,6 +50,44 @@
                   min="1">
               </div>
             </div>
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="powerA">Power <small class="text-muted">(combat)</small></label>
+                <input
+                  [(ngModel)]="settings.armyA.combatPower"
+                  type="number"
+                  class="form-control"
+                  id="nameA"
+                  name="nameA">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="nameA">Power <small class="text-muted">(defence)</small></label>
+                <input
+                  [(ngModel)]="settings.armyA.defencePower"
+                  type="number"
+                  class="form-control"
+                  id="nameA"
+                  name="nameA">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="nameB">Power <small class="text-muted">(combat)</small></label>
+                <input
+                  [(ngModel)]="settings.armyB.combatPower"
+                  type="number"
+                  class="form-control"
+                  id="nameB"
+                  name="nameB">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="nameA">Power <small class="text-muted">(defence)</small></label>
+                <input
+                  [(ngModel)]="settings.armyA.defencePower"
+                  type="number"
+                  class="form-control"
+                  id="nameA"
+                  name="nameA">
+              </div>
+            </div>
             <hr>
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -98,7 +136,7 @@
                 rows="3"></textarea>
             </div>
           </form>
-          <button class="btn btn-secondary" (click)="startGame()">
+          <button class="btn btn-secondary" (click)="startGame()" style="margin-top: -30px;">
             Ludi incipiant
           </button>
         </div>

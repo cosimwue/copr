@@ -1,0 +1,17 @@
+.battlefield {
+    margin-bottom: 0px;
+}
+
+#side-a {
+    border-color: #aec6cf;
+}
+
+#side-b {
+    border-color: #ff6666;
+}
+
+.icon-b {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    fill: red !important;
+}

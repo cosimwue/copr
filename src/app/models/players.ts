@@ -14,11 +14,16 @@ export class Army {
   size: number
   history: Array<number>
   wins: number
+  combatPower: number
+  defencePower: number
 
-  constructor(name: string, size: number) {
+  constructor(name: string, size: number, combatPower: number, defencePower: number) {
     this.name = name;
     this.size = size;
     this.history = [size];
     this.wins = 0;
+    this.combatPower = combatPower;
+    this.defencePower = defencePower;
+  
   }
 }

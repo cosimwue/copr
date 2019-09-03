@@ -1,54 +1,27 @@
 <div class="container-fluid content">
-  <div class="row battle-row">
-    <div class="col-1"></div>
-    <div class="col-7 chart">
-      <ngx-charts-line-chart
-        [scheme]="colorScheme"
-        [results]="data"
-        [gradient]="gradient"
-        [xAxis]="showXAxis"
-        [yAxis]="showYAxis"
-        [legend]="showLegend"
-        [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
-        [xScaleMax]="xScaleMax"
-        [autoScale]="autoScale">
-      </ngx-charts-line-chart>
-    </div>
-    <div class="col-3">
-      <div class="card legend">
-        <div class="card-body">
-          <div id="a">
-            <h5>
-              <i class="fas fa-square icon-a"></i> {{ settings.armyA.name }}
-            </h5>
-            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size > settings.armyB.size">Superior with </ng-container>
-            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size < settings.armyB.size">Inferior with </ng-container>
-            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size == settings.armyB.size">Equal with </ng-container>
-            <ng-container *ngIf="settings.armyA.size <= 0">Defeated with </ng-container>
-            {{ settings.armyA.size }} men.
-          </div>
-          <div id="b">
-            <h5>
-              <i class="fas fa-square icon-b"></i> {{ settings.armyB.name }}
-            </h5>
-            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size > settings.armyA.size">Superior with </ng-container>
-            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size < settings.armyA.size">Inferior with </ng-container>
-            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size == settings.armyA.size">Equal with </ng-container>
-            <ng-container *ngIf="settings.armyB.size <= 0">Defeated with </ng-container>
-            {{ settings.armyB.size }} men.
-          </div>
-        </div>
-      </div>
-      <div class="attack-btn">
+  <hr>
+  <app-battlefield
+    [a]="status.one.a"
+    [b]="status.one.b">
+  </app-battlefield>
+  <hr>
+  <app-battlefield
+    [a]="status.two.a"
+    [b]="status.two.b">
+  </app-battlefield>
+  <hr>
+  <app-battlefield
+    [a]="status.three.a"
+    [b]="status.three.b">
+  </app-battlefield>
+  <hr>
+</div>
+
+<!--
+<div style="margin: 0 auto;">
         <app-battle
           [enableBattle]="enableBattle"
           [settings]="settings"
           (attritionReport)="updateSize($event)">
         </app-battle>
-      </div>
-    </div>
-    <div class="col-1"></div>
-  </div>
+      </div>-->

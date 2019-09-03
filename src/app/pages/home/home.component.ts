@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.toastr.clear();
-    let armyA = new Army('England', 1000);
-    let armyB = new Army('France', 1000);
+    let armyA = new Army('England', 1000, 0.5, 0.5);
+    let armyB = new Army('France', 1000, 0.5, 0.5);
     let law = 'lanchester';
     let implementation = 'return attacker.size * attacker.power;';
     let timePerBattle = 120;

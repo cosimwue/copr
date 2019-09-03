@@ -18,6 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CountdownModule } from 'ngx-countdown';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ToastrModule } from 'ngx-toastr';
+import { BattlefieldComponent } from './components/battlefield/battlefield.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ToastrModule } from 'ngx-toastr';
     InfoComponent,
     HomeComponent,
     GameComponent,
-    BattleComponent
+    BattleComponent,
+    BattlefieldComponent
   ],
   imports: [
     BrowserModule,
