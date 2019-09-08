@@ -5,19 +5,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 import { AppComponent } from './app.component';
-import { InfoComponent, BattleComponent } from './components';
+import { InfoComponent, BattleComponent, BattlefieldComponent } from './components';
 import { HomeComponent, GameComponent } from './pages';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ToastrModule } from 'ngx-toastr';
-import { BattlefieldComponent } from './components/battlefield/battlefield.component';
+import { KatexModule } from 'ng-katex';
 
 
 @NgModule({
@@ -38,7 +38,8 @@ import { BattlefieldComponent } from './components/battlefield/battlefield.compo
     NgbModule,
     NgxChartsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    KatexModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

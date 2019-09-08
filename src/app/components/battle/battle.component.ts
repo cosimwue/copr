@@ -11,10 +11,12 @@ const random = require('random')
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss']
 })
-export class BattleComponent {
+export class BattleComponent implements OnInit {
   @Input('settings') settings: Settings;
   @Input('enableBattle') enableBattle: boolean;
   @Output('attritionReport') attritionReport: EventEmitter<any>;
+  public collapseArmyA: boolean;
+  public collapseArmyB: boolean;
   public unitA: Unit;
   public unitB: Unit;
 
@@ -79,6 +81,17 @@ export class BattleComponent {
       attrition = attacked.size;
     }
     return attrition;
-}
+  }
+
+  public updateAvailableMen(army: string, value: number): void {
+    if (army === 'a') {
+      this.availableArmyA = this.availableArmyA - value;
+    }
+  }
+
+  public ngOnInit(): void {
+    this.collapseArmyA = true;
+    this.collapseArmyB = true;
+  }
 
 }
