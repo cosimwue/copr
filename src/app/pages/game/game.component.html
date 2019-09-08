@@ -1,27 +1,26 @@
 <div class="container-fluid content">
   <hr>
   <app-battlefield
-    [a]="status.one.a"
-    [b]="status.one.b">
+    [a]="settings.armyA.firstUnit"
+    [b]="settings.armyB.firstUnit">
   </app-battlefield>
   <hr>
   <app-battlefield
-    [a]="status.two.a"
-    [b]="status.two.b">
+    [a]="settings.armyA.secondUnit"
+    [b]="settings.armyB.secondUnit">
   </app-battlefield>
   <hr>
   <app-battlefield
-    [a]="status.three.a"
-    [b]="status.three.b">
+    [a]="settings.armyA.thirdUnit"
+    [b]="settings.armyB.thirdUnit">
   </app-battlefield>
   <hr>
 </div>
 
-<!--
 <div style="margin: 0 auto;">
-        <app-battle
-          [enableBattle]="enableBattle"
-          [settings]="settings"
-          (attritionReport)="updateSize($event)">
-        </app-battle>
-      </div>-->
+  <app-battle
+    [enableBattle]="enableBattle"
+    [settings]="settings"
+    (attritionReport)="updateSize($event)">
+  </app-battle>
+</div>

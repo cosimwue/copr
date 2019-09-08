@@ -13,17 +13,20 @@ export class Army {
   name: string
   size: number
   history: Array<number>
-  wins: number
   combatPower: number
   defencePower: number
+  firstUnit: any
+  secondUnit: any
+  thirdUnit: any
 
   constructor(name: string, size: number, combatPower: number, defencePower: number) {
     this.name = name;
     this.size = size;
     this.history = [size];
-    this.wins = 0;
     this.combatPower = combatPower;
     this.defencePower = defencePower;
-  
+    this.firstUnit = {size: 0, combat: false};
+    this.secondUnit = {size: 0, combat: false};
+    this.thirdUnit = {size: 0, combat: false};
   }
 }

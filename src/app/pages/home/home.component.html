@@ -52,45 +52,45 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-3">
-                <label for="powerA">Power <small class="text-muted">(combat)</small></label>
+                <label for="combatPowerA">Power <small class="text-muted">(combat)</small></label>
                 <input
                   [(ngModel)]="settings.armyA.combatPower"
                   type="number"
                   class="form-control"
-                  id="nameA"
-                  name="nameA">
+                  id="combatPowerA"
+                  name="combatPowerA">
               </div>
               <div class="form-group col-md-3">
-                <label for="nameA">Power <small class="text-muted">(defence)</small></label>
+                <label for="defencePowerA">Power <small class="text-muted">(defence)</small></label>
                 <input
                   [(ngModel)]="settings.armyA.defencePower"
                   type="number"
                   class="form-control"
-                  id="nameA"
-                  name="nameA">
+                  id="defencePowerA"
+                  name="defencePowerA">
               </div>
               <div class="form-group col-md-3">
-                <label for="nameB">Power <small class="text-muted">(combat)</small></label>
+                <label for="combatPowerB">Power <small class="text-muted">(combat)</small></label>
                 <input
                   [(ngModel)]="settings.armyB.combatPower"
                   type="number"
                   class="form-control"
-                  id="nameB"
-                  name="nameB">
+                  id="combatPowerB"
+                  name="combatPowerB">
               </div>
               <div class="form-group col-md-3">
-                <label for="nameA">Power <small class="text-muted">(defence)</small></label>
+                <label for="defencePowerA">Power <small class="text-muted">(defence)</small></label>
                 <input
                   [(ngModel)]="settings.armyA.defencePower"
                   type="number"
                   class="form-control"
-                  id="nameA"
-                  name="nameA">
+                  id="defencePowerA"
+                  name="defencePowerA">
               </div>
             </div>
             <hr>
             <div class="form-row">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-12">
                 <label for="law">Law</label>
                 <select
                   [(ngModel)]="settings.law"
@@ -101,16 +101,6 @@
                   <option value="osipov">Osipov</option>
                   <option value="custom">Custom</option>
                 </select>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="timePerBattle">Time per battle <small class="text-muted">(in seconds)</small></label>
-                <input
-                  [(ngModel)]="settings.timePerBattle"
-                  type="number"
-                  class="form-control"
-                  id="timePerBattle"
-                  name="timePerBattle"
-                  min="1">
               </div>
             </div>
             <div class="form-group implementation" *ngIf="settings.law === 'custom'">

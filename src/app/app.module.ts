@@ -15,7 +15,6 @@ import { InfoComponent, BattleComponent } from './components';
 import { HomeComponent, GameComponent } from './pages';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CountdownModule } from 'ngx-countdown';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ToastrModule } from 'ngx-toastr';
 import { BattlefieldComponent } from './components/battlefield/battlefield.component';
@@ -37,7 +36,6 @@ import { BattlefieldComponent } from './components/battlefield/battlefield.compo
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-    CountdownModule,
     NgxChartsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()

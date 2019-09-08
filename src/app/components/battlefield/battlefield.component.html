@@ -1,19 +1,12 @@
 <div class="col battlefield">
   <div class="row" >
-    <div [style.width.%]="a">
-            <img src="/assets/two-soldiers.svg" height="80px" style="margin-left: calc(100% - 80px);">
+    <div [style.width.%]="(a.size / (a.size + b.size)) * 100" [class.side-a]="a">
+      <img *ngIf="!a.combat" src="/assets/soldier.svg" height="60px" placement="top" ngbTooltip="Tooltip on top">
+      <img *ngIf="a.combat" src="/assets/army-soldier-walking.svg" height="60px">
     </div>
-    <div [style.width.%]="middle"></div>
-    <div [style.width.%]="b">
-            <img src="/assets/two-soldiers.svg" height="80px" class="icon-b" style="margin-right: calc(100% - 80px);">
-           </div>
+    <div [style.width.%]="(b.size / (a.size + b.size)) * 100" [class.side-b]="b">
+      <img *ngIf="!b.combat" src="/assets/soldier.svg" height="60px" class="icon-b float-right">
+      <img *ngIf="b.combat" src="/assets/army-soldier-walking.svg" height="60px" class="icon-b float-right">
+    </div>
   </div>
 </div>
-
-<!--
-
-    <img src="/assets/two-soldiers.svg" height="80px" [style.margin-left.%]="90">
-    <img src="/assets/two-soldiers.svg" height="80px" class="icon-b" [style.margin-right.%]="b">
-
-
--->

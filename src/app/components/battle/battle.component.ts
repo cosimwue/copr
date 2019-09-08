@@ -11,49 +11,19 @@ const random = require('random')
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss']
 })
-export class BattleComponent implements OnInit {
+export class BattleComponent {
   @Input('settings') settings: Settings;
   @Input('enableBattle') enableBattle: boolean;
   @Output('attritionReport') attritionReport: EventEmitter<any>;
   public unitA: Unit;
   public unitB: Unit;
-  public countdownConfigA: any;
-  public countdownConfigB: any;
-  public formDisableA: boolean;
-  public formDisableB: boolean;
 
   constructor(private modalService: NgbModal) {
     this.attritionReport = new EventEmitter<any>();
   }
 
   public open(content: any): void {
-    this.modalService.open(content, { size: 'lg' });
-    this.formDisableA = false;
-    this.formDisableB = false;
-    this.countdownConfigA = {
-      leftTime: this.settings.timePerBattle,
-      template: '$!m!:$!s!'
-    };
-    this.countdownConfigB = {
-      leftTime: this.settings.timePerBattle,
-      template: '$!m!:$!s!'
-    };
-  }
-
-  public disableForms(army: string): void {
-    if (army === 'a') {
-      this.formDisableA = true;
-      this.countdownConfigA = {
-        leftTime: 0,
-        template: '$!m!:$!s!'
-      };  
-    } else if (army === 'b') {
-      this.formDisableB = true;
-      this.countdownConfigB = {
-        leftTime: 0,
-        template: '$!m!:$!s!'
-      };  
-    }
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
   public startBattle(): void {
@@ -110,12 +80,5 @@ export class BattleComponent implements OnInit {
     }
     return attrition;
 }
-
-  public ngOnInit(): void {
-    let sizeA = (this.settings.armyA.size / 100) * 10;
-    let sizeB = (this.settings.armyB.size / 100) * 10;
-    this.unitA = new Unit(sizeA, 0.5);
-    this.unitB = new Unit(sizeB, 0.5);
-  }
 
 }

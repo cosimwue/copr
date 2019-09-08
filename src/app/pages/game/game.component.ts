@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class GameComponent implements OnInit {
   public enableBattle: boolean;
   public settings: Settings;
-  public status: any;
+  public units: any;
 
   constructor(private router: Router, private toastr: ToastrService) {
     const navigation = this.router.getCurrentNavigation();
@@ -36,14 +36,13 @@ export class GameComponent implements OnInit {
 
   private gameOver(winner: Army): void {
     let heading = 'War is over!';
-    let message = `${winner.name} has won a total of ${winner.wins} battles and has thus also won the war.`;
+    let message = `${winner.name} has won the war.`;
     this.toastr.success(message, heading, {disableTimeOut: true, positionClass: 'toast-bottom-center'});
   }
 
 
   public ngOnInit(): void {
     this.enableBattle = true;
-    this.status = {'one': {'a': 0, 'b': 0}, 'two': {'a': 0, 'b': 0}, 'three': {'a': 0, 'b': 0}}
   }
 
 }

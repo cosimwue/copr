@@ -2,12 +2,14 @@
     margin-bottom: 0px;
 }
 
-#side-a {
-    border-color: #aec6cf;
+.side-a {
+    background-color: rgba(174, 198, 207, 0.3);
+    padding: 10px;
 }
 
-#side-b {
-    border-color: #ff6666;
+.side-b {
+    background-color: rgba(255, 102, 102, 0.3);
+    padding: 10px;
 }
 
 .icon-b {
