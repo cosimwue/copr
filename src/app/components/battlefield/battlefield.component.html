@@ -1,13 +1,12 @@
 <div class="col battlefield">
   <div class="row" >
-    <div [style.width.%]="widthA" [class.side-a]="aIsSet">
-      <img *ngIf="!a.combat" src="/assets/soldier.svg" height="60px" placement="top" ngbTooltip="Men in defence">
-      <img *ngIf="a.combat" src="/assets/army-soldier-walking.svg" height="60px" placement="top" ngbTooltip="Men in combat">
+    <div class="basic side-a" [style.width.%]="a.size">
+      <img *ngIf="!a.combat" src="/assets/soldier.svg" height="60px" placement="right" ngbTooltip="Men in defence">
+      <img *ngIf="a.combat" src="/assets/firing.svg" height="60px" placement="right" ngbTooltip="Men in combat">
     </div>
-    <div [style.width.%]="widthB" [class.side-b]="bIsSet">
-      <img *ngIf="!b.combat" src="/assets/soldier.svg" height="60px" class="icon-b float-right" placement="top" ngbTooltip="Men in defence">
-      <img *ngIf="b.combat" src="/assets/army-soldier-walking.svg" height="60px" class="icon-b float-right" placement="top" ngbTooltip="Men in combat">
+    <div class="basic side-b" [style.width.%]="b.size">
+      <img *ngIf="!b.combat" src="/assets/soldier.svg" height="60px" class="icon-b float-right" placement="left" ngbTooltip="Men in defence">
+      <img *ngIf="b.combat" src="/assets/firing.svg" height="60px" class="icon-b float-right" placement="left" ngbTooltip="Men in combat">
     </div>
   </div>
 </div>
-{{ COOL | json }}

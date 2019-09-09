@@ -1,10 +1,15 @@
 export class Unit {
   size: number
   power: number
+  combatPower: number
+  defencePower: number
+  combat: boolean
 
-  constructor(size: number, power: number) {
+  constructor(size: number, combatPower: number, defencePower: number, combat: boolean) {
     this.size = size;
-    this.power = power;
+    this.combatPower = combatPower;
+    this.defencePower = defencePower;
+    this.combat = combat;
   }
 }
 
@@ -25,8 +30,8 @@ export class Army {
     this.history = [size];
     this.combatPower = combatPower;
     this.defencePower = defencePower;
-    this.firstUnit = {size: 0, combat: false};
-    this.secondUnit = {size: 0, combat: false};
-    this.thirdUnit = {size: 0, combat: false};
+    this.firstUnit = new Unit(size / 100 * 10, combatPower, defencePower, false);
+    this.secondUnit = new Unit(size / 100 * 10, combatPower, defencePower, false);
+    this.thirdUnit = new Unit(size / 100 * 10, combatPower, defencePower, false);
   }
 }
