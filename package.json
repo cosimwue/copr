@@ -1,5 +1,5 @@
 {
-  "name": "COPR",
+  "name": "copr",
   "version": "0.0.1",
   "description": "COPR – Simulating Conflicts",
   "homepage": "https://github.com/cosimwue/copr",
@@ -87,5 +87,17 @@
     "ngx-toastr": "^10.1.0",
     "popper.js": "^1.15.0",
     "random": "^2.1.1"
+  },
+  "build": {
+    "directories": {
+        "output": "release-builds",
+        "buildResources": "resources"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "snap"
+      ]
+    }
   }
 }
