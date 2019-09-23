@@ -15,9 +15,9 @@ import { InfoComponent, BattleComponent, BattlefieldComponent } from './componen
 import { HomeComponent, GameComponent } from './pages';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
-import { ToastrModule } from 'ngx-toastr';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { KatexModule } from 'ng-katex';
+import { ResultComponent } from './pages/result/result.component';
 
 
 @NgModule({
@@ -28,7 +28,8 @@ import { KatexModule } from 'ng-katex';
     HomeComponent,
     GameComponent,
     BattleComponent,
-    BattlefieldComponent
+    BattlefieldComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,6 @@ import { KatexModule } from 'ng-katex';
     NgbModule,
     NgxChartsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
     KatexModule
   ],
   providers: [ElectronService],

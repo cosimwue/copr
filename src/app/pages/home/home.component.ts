@@ -3,7 +3,6 @@ import { NavigationExtras, Router } from '@angular/router';
 
 import { Settings, Army } from '../../models';
 
-import { ToastrService } from 'ngx-toastr';
 import { KatexOptions } from 'ng-katex';
 
 
@@ -20,7 +19,7 @@ export class HomeComponent implements OnInit {
   public postParagraph: string;
   public options: KatexOptions;
 
-  constructor(private router: Router, private toastr: ToastrService) { }
+  constructor(private router: Router) { }
 
   public startGame(): void {
     let settings: NavigationExtras = {
@@ -30,7 +29,6 @@ export class HomeComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.toastr.clear();
     let armyA = new Army('England', 1000, 0.5, 0.7);
     let armyB = new Army('France', 1000, 0.5, 0.7);
     let law = 'lanchester';

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 import { Settings, Army } from '../../models';
-import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,12 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class GameComponent implements OnInit {
   public enableBattle: boolean;
   public settings: Settings;
-  public latestFirstA: any = {size: 50, combat: false};
-  public latestFirstB: any = {size: 50, combat: false};
-  public latestFirstTotal: number;
 
-
-  constructor(private router: Router, private toastr: ToastrService) {
+  constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     let settings = navigation.extras.state;
     /*this.settings = new Settings(
@@ -61,7 +56,6 @@ export class GameComponent implements OnInit {
     }
     this.settings.armyB.history.push(this.settings.armyB.size)
 
-
     this.settings.armyA.firstUnit.size = this.settings.armyA.firstUnit.size - report.a1;
     if (this.settings.armyA.firstUnit.size <= 0) {
       this.gameOver(this.settings.armyB)
@@ -94,19 +88,56 @@ export class GameComponent implements OnInit {
       return
     }
 
-    this.latestFirstTotal = this.settings.armyA.firstUnit.size + this.settings.armyB.firstUnit.size;
-    this.latestFirstA.size = this.settings.armyA.firstUnit.size / this.latestFirstTotal * 100;
-    this.latestFirstB.size = this.settings.armyB.firstUnit.size / this.latestFirstTotal * 100;
+    let totalFirst = this.settings.armyA.firstUnit.size + this.settings.armyB.firstUnit.size;
+    var newFirstA = (this.settings.armyA.firstUnit.size / totalFirst) * 100;
+    if (newFirstA > 10) {
+      this.settings.armyA.firstUnit.width = newFirstA;
+    } else {
+      this.settings.armyA.firstUnit.width = 10;
+    }
+    var newFirstB = (this.settings.armyB.firstUnit.size / totalFirst) * 100;
+    if (newFirstB > 10) {
+      this.settings.armyB.firstUnit.width = newFirstB;
+    } else {
+      this.settings.armyB.firstUnit.width = 10;
+    }
+
+    let totalSecond = this.settings.armyA.secondUnit.size + this.settings.armyB.secondUnit.size;
+    var newFirstA = (this.settings.armyA.secondUnit.size / totalSecond) * 100;
+    if (newFirstA > 10) {
+      this.settings.armyA.secondUnit.width = newFirstA;
+    } else {
+      this.settings.armyA.secondUnit.width = 10;
+    }
+    var newFirstB = (this.settings.armyB.secondUnit.size / totalSecond) * 100;
+    if (newFirstB > 10) {
+      this.settings.armyB.secondUnit.width = newFirstB;
+    } else {
+      this.settings.armyB.secondUnit.width = 10;
+    }
+
+    let totalThird = this.settings.armyA.thirdUnit.size + this.settings.armyB.thirdUnit.size;
+    var newFirstA = (this.settings.armyA.thirdUnit.size / totalThird) * 100;
+    if (newFirstA > 10) {
+      this.settings.armyA.thirdUnit.width = newFirstA;
+    } else {
+      this.settings.armyA.thirdUnit.width = 10;
+    }
+    var newFirstB = (this.settings.armyB.thirdUnit.size / totalThird) * 100;
+    if (newFirstB > 10) {
+      this.settings.armyB.thirdUnit.width = newFirstB;
+    } else {
+      this.settings.armyB.thirdUnit.width = 10;
+    }
 
   }
-
 
   private gameOver(winner: Army): void {
-    let heading = 'War is over!';
-    let message = `${winner.name} has won the war.`;
-    this.toastr.success(message, heading, {disableTimeOut: true, positionClass: 'toast-bottom-center'});
+    let settings: NavigationExtras = {
+      state: this.settings
+    };
+    this.router.navigate(['/result'], settings);
   }
-
 
   public ngOnInit(): void {
     this.enableBattle = true;

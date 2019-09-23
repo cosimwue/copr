@@ -4,12 +4,14 @@ export class Unit {
   combatPower: number
   defencePower: number
   combat: boolean
+  width: number;
 
-  constructor(size: number, combatPower: number, defencePower: number, combat: boolean) {
+  constructor(size: number, combatPower: number, defencePower: number, combat: boolean, width: number) {
     this.size = size;
     this.combatPower = combatPower;
     this.defencePower = defencePower;
     this.combat = combat;
+    this.width = width;
   }
 }
 
@@ -20,9 +22,9 @@ export class Army {
   history: Array<number>
   combatPower: number
   defencePower: number
-  firstUnit: any
-  secondUnit: any
-  thirdUnit: any
+  firstUnit: Unit
+  secondUnit: Unit
+  thirdUnit: Unit
 
   constructor(name: string, size: number, combatPower: number, defencePower: number) {
     this.name = name;
@@ -30,8 +32,8 @@ export class Army {
     this.history = [size];
     this.combatPower = combatPower;
     this.defencePower = defencePower;
-    this.firstUnit = new Unit(size / 100 * 10, combatPower, defencePower, false);
-    this.secondUnit = new Unit(size / 100 * 10, combatPower, defencePower, false);
-    this.thirdUnit = new Unit(size / 100 * 10, combatPower, defencePower, false);
+    this.firstUnit = new Unit(size / 100 * 10, combatPower, defencePower, false, 50);
+    this.secondUnit = new Unit(size / 100 * 10, combatPower, defencePower, false, 50);
+    this.thirdUnit = new Unit(size / 100 * 10, combatPower, defencePower, false, 50);
   }
 }

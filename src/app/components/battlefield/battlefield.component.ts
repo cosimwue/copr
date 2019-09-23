@@ -5,13 +5,10 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from
   templateUrl: './battlefield.component.html',
   styleUrls: ['./battlefield.component.scss']
 })
-export class BattlefieldComponent implements OnChanges {
+export class BattlefieldComponent {
   @Input('a') a: any;
   @Input('b') b: any;
 
   constructor() { }
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes.a.currentValue.size)
-  }
 }

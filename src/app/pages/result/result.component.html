@@ -1,0 +1,24 @@
+<div class="container-fluid content" style="margin-top: 35px;">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-8 chart">
+      <ngx-charts-line-chart
+        [scheme]="colorScheme"
+        [xAxisTickFormatting]="axisFormat"
+        [yAxisTickFormatting]="axisFormat"
+        [results]="data"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [xScaleMax]="xScaleMax"
+        [autoScale]="autoScale">
+      </ngx-charts-line-chart>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

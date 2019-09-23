@@ -33,7 +33,6 @@ export class BattleComponent {
     } else if (this.settings.law === 'custom') {
       var attrition = this.customLaw(this.settings);
     }
-    console.log(JSON.stringify(attrition));
     this.attritionReport.emit(attrition);
   }
 

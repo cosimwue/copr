@@ -1,10 +1,10 @@
 <div class="col battlefield">
   <div class="row" >
-    <div class="basic side-a" [style.width.%]="a.size">
+    <div class="basic side-a" [style.width.%]="a.width">
       <img *ngIf="!a.combat" src="/assets/soldier.svg" height="60px" placement="right" ngbTooltip="Men in defence">
       <img *ngIf="a.combat" src="/assets/firing.svg" height="60px" placement="right" ngbTooltip="Men in combat">
     </div>
-    <div class="basic side-b" [style.width.%]="b.size">
+    <div class="basic side-b" [style.width.%]="b.width">
       <img *ngIf="!b.combat" src="/assets/soldier.svg" height="60px" class="icon-b float-right" placement="left" ngbTooltip="Men in defence">
       <img *ngIf="b.combat" src="/assets/firing.svg" height="60px" class="icon-b float-right" placement="left" ngbTooltip="Men in combat">
     </div>

@@ -1,16 +1,32 @@
-<div class="container-fluid content game">
-  <app-battlefield
-    [a]="latestFirstA"
-    [b]="latestFirstB">
-  </app-battlefield>
-  <app-battlefield
-    [a]="latestFirstA"
-    [b]="latestFirstB">
-  </app-battlefield>
-  <app-battlefield
-    [a]="latestFirstA"
-    [b]="latestFirstB">
-  </app-battlefield>
+<div class="container-fluid content" style="margin-top: 35px;">
+  <div class="row">
+    <div class="col">
+      <h3>
+        {{ settings.armyA.name }}
+      </h3>
+    </div>
+    <div class="col float-right">
+      <h3 class="float-right">
+        {{ settings.armyB.name }}
+      </h3>
+    </div>
+  </div>
+  <div class="row game">
+    <div class="col">
+      <app-battlefield
+        [a]="settings.armyA.firstUnit"
+        [b]="settings.armyB.firstUnit">
+      </app-battlefield>
+      <app-battlefield
+        [a]="settings.armyA.secondUnit"
+        [b]="settings.armyB.secondUnit">
+      </app-battlefield>
+      <app-battlefield
+        [a]="settings.armyA.thirdUnit"
+        [b]="settings.armyB.thirdUnit">
+      </app-battlefield>
+    </div>
+  </div>
 </div>
 
 <div class="button-div">
