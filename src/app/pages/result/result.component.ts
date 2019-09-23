@@ -42,7 +42,7 @@ export class ResultComponent implements OnInit {
     this.showXAxis = true;
     this.showYAxis = true;
     this.gradient = false;
-    this.showLegend = false;
+    this.showLegend = true;
     this.showXAxisLabel = true;
     this.showYAxisLabel = true;
     this.xScaleMax = this.settings.armyA.history.length - 1;
