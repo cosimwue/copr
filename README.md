@@ -19,7 +19,7 @@ and start the application with
 $ npm start
 ```
 
-> You can also use the [latest release](https://github.com/cosimwue/copr/releases) no installation necessary, just download and click!
+> You can also use the [latest release](https://github.com/cosimwue/copr/releases). No installation necessary, just download and click!
 
 
 ## User interface
