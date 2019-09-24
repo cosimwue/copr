@@ -32,13 +32,13 @@ export class HomeComponent implements OnInit {
     let armyA = new Army('England', 1000, 0.2, 0.1);
     let armyB = new Army('France', 1000, 0.1, 0.2);
     let law = 'lanchester';
-    let implementation = '// Write only the function\'s body and return an integer\n\nreturn attacker.power * attacker.size;';
+    let implementation = '// Write only the function\'s body and return an integer\n\nreturn attacker.combatPower * attacker.size;';
     this.settings = new Settings(armyA, armyB, law, implementation);
     this.options = { displayMode: true };
     this.equationA = '\\frac{dA}{dt} = -\\beta B';
     this.equationB = '\\frac{dB}{dt} = -\\alpha A';
     this.preParagraph = `
-    For example, Lanchester’s square law calculates the number of soldiers lost using two simple equations, where 
+    For example, Lanchester’s Square Law calculates the number of soldiers lost using two simple equations, where 
     $A$ represents the number of soldiers with firepower $\\alpha$ in the one force, and $B$ with 
     $\\beta$ in the other.
     `;
