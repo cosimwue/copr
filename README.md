@@ -1,6 +1,6 @@
 # COPR – Simulating Conflicts
 
-This easy-to-use application enables its users to simulate a military conflict which is mathematically modelled, for example, by [Lanchester’s Square Law](), calculating the relative strengths of military forces.
+This easy-to-use application enables its users to simulate a military conflict which is mathematically modelled, for example, by [Lanchester’s Square Law](), calculating the relative strengths of forces.
 
 
 ## Getting started
@@ -11,7 +11,7 @@ Install the project’s dependencies
 $ npm install
 ```
 
-and start the application afterwards with
+and start the application with
 
 ```
 $ npm start
