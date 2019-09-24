@@ -18,7 +18,7 @@ $ npm start
 ```
 
 
-## Examples
+## User interface
 
 <img src="docs/home-border.png" style="margin-bottom: 30px;">
 
