@@ -40,9 +40,24 @@
 }
 
 .game {
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-bottom: -20px;
 }
 
 .button-div {
     text-align: center;
+}
+
+.army-a {
+    margin-left: 2px;
+    color: rgb(194, 59, 34, 0.8);
+}
+
+.army-b {
+    margin-left: 2px;
+    color: rgb(119, 158, 203, 0.8);
+}
+
+.show-attrition {
+    font-weight: 1000;
 }

@@ -20,15 +20,20 @@
           <ngb-tab>
             <ng-template ngbTabTitle><b>Secret Specifications</b></ng-template>
             <ng-template ngbTabContent>
+              <div class="row content" style="margin-top: 30px;">
+                <div class="col">
+                    Secret decisions must be made. Once each side has chosen, <b>fire</b>!
+                </div>
+              </div>
               <div class="row content">
                 <div class="col">
-                  
                   <button
-                    style="margin-bottom: -20px;"
+                    [disabled]="availableA - settings.armyA.firstUnit.size - settings.armyA.secondUnit.size - settings.armyA.thirdUnit.size < 0 || availableB - settings.armyB.firstUnit.size - settings.armyB.secondUnit.size - settings.armyB.thirdUnit.size < 0"
+                    style="margin-bottom: -15px; margin-top: 30px; width: 200px;"
                     type="button"
-                    class="btn btn-lg btn-danger center-btn"
+                    class="btn btn-danger center-btn"
                     (click)="startBattle()">
-                    Attack!
+                    <img src="assets/fire.svg" height="70px" class="fire">
                   </button>
                 </div>
               </div>
@@ -36,6 +41,12 @@
           </ngb-tab>
           <ngb-tab [title]="settings.armyA.name">
             <ng-template ngbTabContent>
+              <div class="content" style="margin-bottom: 30px;">
+                <b class="text-mute">Available men</b>: {{ availableA - settings.armyA.firstUnit.size - settings.armyA.secondUnit.size - settings.armyA.thirdUnit.size }}
+                <div style="margin-top: 15px;" class="alert alert-danger" role="alert" *ngIf="availableA - settings.armyA.firstUnit.size - settings.armyA.secondUnit.size - settings.armyA.thirdUnit.size < 0">
+                  You've spread {{ (availableA - settings.armyA.firstUnit.size - settings.armyA.secondUnit.size - settings.armyA.thirdUnit.size) * -1 }} men too much over the trenches!
+                </div>
+              </div>
               <div class="form-row content">
                 <div class="form-group col-md">
                   <div class="input-group mb-3">
@@ -59,7 +70,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" style="margin-top: -15px;">
                 <div class="form-group col-md">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -109,6 +120,12 @@
           </ngb-tab>
           <ngb-tab [title]="settings.armyB.name">
             <ng-template ngbTabContent>
+              <div class="content" style="margin-bottom: 30px;">
+                <b class="text-mute">Available men</b>: {{ availableB - settings.armyB.firstUnit.size - settings.armyB.secondUnit.size - settings.armyB.thirdUnit.size }}
+                <div style="margin-top: 15px;" class="alert alert-danger" role="alert" *ngIf="availableA - settings.armyB.firstUnit.size - settings.armyB.secondUnit.size - settings.armyB.thirdUnit.size < 0">
+                  You've spread {{ (availableB - settings.armyB.firstUnit.size - settings.armyB.secondUnit.size - settings.armyB.thirdUnit.size) * -1 }} men too much over the trenches!
+                </div>
+              </div>
               <div class="form-row content">
                 <div class="form-group col-md">
                   <div class="input-group mb-3">
@@ -132,7 +149,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" style="margin-top: -15px;">
                 <div class="form-group col-md">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">

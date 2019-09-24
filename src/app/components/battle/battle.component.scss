@@ -15,3 +15,8 @@
     display: block;
     margin: 0 auto;
 }
+
+.fire {
+   -webkit-filter: invert(1);
+   filter: invert(1);
+}

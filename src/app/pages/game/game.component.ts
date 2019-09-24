@@ -12,23 +12,18 @@ import { Settings, Army } from '../../models';
 export class GameComponent implements OnInit {
   public enableBattle: boolean;
   public settings: Settings;
+  public showAttrition: boolean;
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     let settings = navigation.extras.state;
-    /*this.settings = new Settings(
+    this.settings = new Settings(
       settings.armyA,
       settings.armyB,
       settings.law,
       settings.implementation,
       settings.timePerBattle
-    );*/
-    let armyA = new Army('England', 1000, 0.5, 0.5);
-    let armyB = new Army('France', 1000, 0.5, 0.5);
-    let law = 'lanchester';
-    let implementation = 'TODO';
-    let timePerBattle = 120;
-    this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
+    );
   }
 
   public updateSize(report: any): any {
@@ -90,49 +85,65 @@ export class GameComponent implements OnInit {
 
     let totalFirst = this.settings.armyA.firstUnit.size + this.settings.armyB.firstUnit.size;
     var newFirstA = (this.settings.armyA.firstUnit.size / totalFirst) * 100;
-    if (newFirstA > 10) {
+    if (newFirstA >= 10 && newFirstA <= 90) {
       this.settings.armyA.firstUnit.width = newFirstA;
-    } else {
+    } else if (newFirstA < 10) {
       this.settings.armyA.firstUnit.width = 10;
+    } else if (newFirstA > 90) {
+      this.settings.armyA.firstUnit.width = 90;
     }
     var newFirstB = (this.settings.armyB.firstUnit.size / totalFirst) * 100;
-    if (newFirstB > 10) {
+    if (newFirstB >= 10 && newFirstB <= 90) {
       this.settings.armyB.firstUnit.width = newFirstB;
-    } else {
+    } else if (newFirstB < 10) {
       this.settings.armyB.firstUnit.width = 10;
+    } else if (newFirstB > 90) {
+      this.settings.armyB.firstUnit.width = 90;
     }
 
     let totalSecond = this.settings.armyA.secondUnit.size + this.settings.armyB.secondUnit.size;
     var newFirstA = (this.settings.armyA.secondUnit.size / totalSecond) * 100;
-    if (newFirstA > 10) {
+    if (newFirstA >= 10 && newFirstA <= 90) {
       this.settings.armyA.secondUnit.width = newFirstA;
-    } else {
+    } else if (newFirstA < 10) {
       this.settings.armyA.secondUnit.width = 10;
+    } else if (newFirstA > 90) {
+      this.settings.armyA.secondUnit.width = 90;
     }
     var newFirstB = (this.settings.armyB.secondUnit.size / totalSecond) * 100;
-    if (newFirstB > 10) {
+    if (newFirstB >= 10 && newFirstB <= 90) {
       this.settings.armyB.secondUnit.width = newFirstB;
-    } else {
+    } else if (newFirstB < 10) {
       this.settings.armyB.secondUnit.width = 10;
+    } else if (newFirstB > 90) {
+      this.settings.armyB.secondUnit.width = 90;
     }
 
     let totalThird = this.settings.armyA.thirdUnit.size + this.settings.armyB.thirdUnit.size;
     var newFirstA = (this.settings.armyA.thirdUnit.size / totalThird) * 100;
-    if (newFirstA > 10) {
+    if (newFirstA >= 10 && newFirstA <= 90) {
       this.settings.armyA.thirdUnit.width = newFirstA;
-    } else {
+    } else if (newFirstA < 10) {
       this.settings.armyA.thirdUnit.width = 10;
+    } else if (newFirstA > 90) {
+      this.settings.armyA.thirdUnit.width = 90;
     }
     var newFirstB = (this.settings.armyB.thirdUnit.size / totalThird) * 100;
-    if (newFirstB > 10) {
+    if (newFirstB >= 10 && newFirstB <= 90) {
       this.settings.armyB.thirdUnit.width = newFirstB;
-    } else {
+    } else if (newFirstB < 10) {
       this.settings.armyB.thirdUnit.width = 10;
+    } else if (newFirstB > 90) {
+      this.settings.armyB.thirdUnit.width = 90;
     }
+
+    this.showAttrition = true;
+    setTimeout(() => this.showAttrition = false, 1500);
 
   }
 
   private gameOver(winner: Army): void {
+    this.settings.winner = winner;
     let settings: NavigationExtras = {
       state: this.settings
     };
@@ -141,6 +152,7 @@ export class GameComponent implements OnInit {
 
   public ngOnInit(): void {
     this.enableBattle = true;
+    this.showAttrition = false;
   }
 
 }

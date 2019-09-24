@@ -33,7 +33,7 @@ export class ResultComponent implements OnInit {
       settings.armyB,
       settings.law,
       settings.implementation,
-      settings.timePerBattle
+      settings.winner
     );
   }
 
@@ -42,7 +42,7 @@ export class ResultComponent implements OnInit {
     this.showXAxis = true;
     this.showYAxis = true;
     this.gradient = false;
-    this.showLegend = true;
+    this.showLegend = false;
     this.showXAxisLabel = true;
     this.showYAxisLabel = true;
     this.xScaleMax = this.settings.armyA.history.length - 1;
@@ -86,7 +86,6 @@ export class ResultComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.enableBattle = true;
     this.setupPlot();
   }
 

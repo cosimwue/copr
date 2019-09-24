@@ -29,12 +29,11 @@ export class HomeComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    let armyA = new Army('England', 1000, 0.5, 0.7);
-    let armyB = new Army('France', 1000, 0.5, 0.7);
+    let armyA = new Army('England', 1000, 0.2, 0.1);
+    let armyB = new Army('France', 1000, 0.1, 0.2);
     let law = 'lanchester';
     let implementation = '// Write only the function\'s body and return an integer\n\nreturn attacker.power * attacker.size;';
-    let timePerBattle = 120;
-    this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);
+    this.settings = new Settings(armyA, armyB, law, implementation);
     this.options = { displayMode: true };
     this.equationA = '\\frac{dA}{dt} = -\\beta B';
     this.equationB = '\\frac{dB}{dt} = -\\alpha A';

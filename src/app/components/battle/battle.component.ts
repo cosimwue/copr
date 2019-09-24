@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Settings, Unit } from '../../models';
 
-const random = require('random')
+import { random } from 'random';
 
 
 @Component({
@@ -15,6 +15,8 @@ export class BattleComponent {
   @Input('settings') settings: Settings;
   @Input('enableBattle') enableBattle: boolean;
   @Output('attritionReport') attritionReport: EventEmitter<any>;
+  public availableA: number;
+  public availableB: number;
 
   constructor(private modalService: NgbModal) {
     this.attritionReport = new EventEmitter<any>();
@@ -22,6 +24,8 @@ export class BattleComponent {
 
   public open(content: any): void {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+    this.availableA = this.settings.armyA.size;
+    this.availableB = this.settings.armyB.size;
   }
 
   public startBattle(): void {

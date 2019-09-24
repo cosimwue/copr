@@ -2,13 +2,18 @@
   <div class="row">
     <div class="col">
       <h3>
-        {{ settings.armyA.name }}
+        <i class="fas fa-square army-a"></i> {{ settings.armyA.name }}
       </h3>
+      <span class="text-muted">{{ settings.armyA.size }} men at service, <span [class.show-attrition]="showAttrition">{{ settings.armyA.history[0] - settings.armyA.size }}</span> lost.</span>
     </div>
-    <div class="col float-right">
-      <h3 class="float-right">
-        {{ settings.armyB.name }}
+    <div class="col align-items-center">
+      <img *ngIf="showAttrition" src="assets/explosion.svg" height="60px" style="margin-left: 170px;">
+    </div>
+    <div class="col text-right">
+      <h3>
+        {{ settings.armyB.name }} <i class="fas fa-square army-b"></i>
       </h3>
+      <span class="text-muted">{{ settings.armyB.size }} men at service, <span [class.show-attrition]="showAttrition">{{ settings.armyB.history[0] - settings.armyB.size }}</span> lost.</span>
     </div>
   </div>
   <div class="row game">

@@ -1,11 +1,9 @@
 <div class="container-fluid content" style="margin-top: 35px;">
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-8 chart">
+  <div class="row battle-row">
+    <div class="col-1"></div>
+    <div class="col-7 chart">
       <ngx-charts-line-chart
         [scheme]="colorScheme"
-        [xAxisTickFormatting]="axisFormat"
-        [yAxisTickFormatting]="axisFormat"
         [results]="data"
         [gradient]="gradient"
         [xAxis]="showXAxis"
@@ -16,9 +14,81 @@
         [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel"
         [xScaleMax]="xScaleMax"
-        [autoScale]="autoScale">
+        [autoScale]="autoScale"
+        [xAxisTickFormatting]="axisFormat">
       </ngx-charts-line-chart>
     </div>
-    <div class="col"></div>
+    <div class="col-3" style="margin-left: 15px; margin-top: 9px;">
+      <div class="card legend">
+        <div class="card-body">
+          <div>
+            <h5>
+              <i class="fas fa-square army-a"></i> {{ settings.armyA.name }} <span *ngIf="settings.winner.name === settings.armyA.name" class="float-right"><i class="fas fa-trophy text-warning"></i></span>
+            </h5>
+            <div>
+              <span *ngIf="settings.winner.name === settings.armyA.name" style="font-weight: bold;">Winner!</span> Total of {{ settings.armyA.size }} men at service.
+            </div>
+            <div>
+              <table class="table table-sm" style="margin-top: 15px;">
+                <thead>
+                  <tr>
+                    <th scope="col">Fire trench</th>
+                    <th scope="col">Men left</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>{{ settings.armyA.firstUnit.size }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>{{ settings.armyA.secondUnit.size }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>{{ settings.armyA.thirdUnit.size }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style="margin-top: 22px;">
+            <h5>
+              <i class="fas fa-square army-b"></i> {{ settings.armyB.name }} <span *ngIf="settings.winner.name === settings.armyB.name" class="float-right"><i class="fas fa-trophy text-warning"></i></span>
+            </h5>
+            <div>
+              <span *ngIf="settings.winner.name === settings.armyB.name" style="font-weight: bold;">Winner!</span> Total of {{ settings.armyB.size }} men at service.
+            </div>
+            <div>
+              <table class="table table-sm" style="margin-top: 15px;">
+                <thead>
+                  <tr>
+                    <th scope="col">Fire trench</th>
+                    <th scope="col">Men left</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>{{ settings.armyB.firstUnit.size }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>{{ settings.armyB.secondUnit.size }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>{{ settings.armyB.thirdUnit.size }}</td>
+                  </tr>
+                </tbody>
+              </table>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
   </div>
 </div>
