@@ -1,54 +1,43 @@
-<div class="container-fluid content">
-  <div class="row battle-row">
-    <div class="col-1"></div>
-    <div class="col-7 chart">
-      <ngx-charts-line-chart
-        [scheme]="colorScheme"
-        [results]="data"
-        [gradient]="gradient"
-        [xAxis]="showXAxis"
-        [yAxis]="showYAxis"
-        [legend]="showLegend"
-        [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
-        [xScaleMax]="xScaleMax"
-        [autoScale]="autoScale">
-      </ngx-charts-line-chart>
+<div class="container-fluid content" style="margin-top: 35px;">
+  <div class="row">
+    <div class="col">
+      <h3>
+        <i class="fas fa-square army-a"></i> {{ settings.armyA.name }}
+      </h3>
+      <span class="text-muted">{{ settings.armyA.size }} men at service, <span [class.show-attrition]="showAttrition">{{ settings.armyA.history[0] - settings.armyA.size }}</span> lost.</span>
     </div>
-    <div class="col-3">
-      <div class="card legend">
-        <div class="card-body">
-          <div id="a">
-            <h5>
-              <i class="fas fa-square icon-a"></i> {{ settings.armyA.name }}
-            </h5>
-            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size > settings.armyB.size">Superior with </ng-container>
-            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size < settings.armyB.size">Inferior with </ng-container>
-            <ng-container *ngIf="settings.armyA.size > 0 && settings.armyA.size == settings.armyB.size">Equal with </ng-container>
-            <ng-container *ngIf="settings.armyA.size <= 0">Defeated with </ng-container>
-            {{ settings.armyA.size }} men.
-          </div>
-          <div id="b">
-            <h5>
-              <i class="fas fa-square icon-b"></i> {{ settings.armyB.name }}
-            </h5>
-            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size > settings.armyA.size">Superior with </ng-container>
-            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size < settings.armyA.size">Inferior with </ng-container>
-            <ng-container *ngIf="settings.armyB.size > 0 && settings.armyB.size == settings.armyA.size">Equal with </ng-container>
-            <ng-container *ngIf="settings.armyB.size <= 0">Defeated with </ng-container>
-            {{ settings.armyB.size }} men.
-          </div>
-        </div>
-      </div>
-      <div class="attack-btn">
-        <app-battle
-          [enableBattle]="enableBattle"
-          [settings]="settings"
-          (attritionReport)="updateSize($event)">
-        </app-battle>
-      </div>
+    <div class="col align-items-center">
+      <img *ngIf="showAttrition" src="assets/explosion.svg" height="60px" style="margin-left: 170px;">
     </div>
-    <div class="col-1"></div>
+    <div class="col text-right">
+      <h3>
+        {{ settings.armyB.name }} <i class="fas fa-square army-b"></i>
+      </h3>
+      <span class="text-muted">{{ settings.armyB.size }} men at service, <span [class.show-attrition]="showAttrition">{{ settings.armyB.history[0] - settings.armyB.size }}</span> lost.</span>
+    </div>
   </div>
+  <div class="row game">
+    <div class="col">
+      <app-battlefield
+        [a]="settings.armyA.firstUnit"
+        [b]="settings.armyB.firstUnit">
+      </app-battlefield>
+      <app-battlefield
+        [a]="settings.armyA.secondUnit"
+        [b]="settings.armyB.secondUnit">
+      </app-battlefield>
+      <app-battlefield
+        [a]="settings.armyA.thirdUnit"
+        [b]="settings.armyB.thirdUnit">
+      </app-battlefield>
+    </div>
+  </div>
+</div>
+
+<div class="button-div">
+  <app-battle
+    [enableBattle]="enableBattle"
+    [settings]="settings"
+    (attritionReport)="updateSize($event)">
+  </app-battle>
+</div>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 import { Settings, Army } from '../../models';
-import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,20 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 export class GameComponent implements OnInit {
   public enableBattle: boolean;
   public settings: Settings;
-  public data: any[];
-  public colorScheme: any;
-  public autoScale: boolean;
-  public showXAxis: boolean;
-  public showYAxis: boolean;
-  public gradient: boolean;
-  public xScaleMax: number;
-  public showLegend: boolean;
-  public showXAxisLabel: boolean;
-  public showYAxisLabel: boolean;
-  public xAxisLabel: string;
-  public yAxisLabel: string;
+  public showAttrition: boolean;
 
-  constructor(private router: Router, private toastr: ToastrService) {
+  constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     let settings = navigation.extras.state;
     this.settings = new Settings(
@@ -35,85 +23,136 @@ export class GameComponent implements OnInit {
       settings.law,
       settings.implementation,
       settings.timePerBattle
-    );/*
-    let armyA = new Army('England', 1000);
-    let armyB = new Army('France', 1000);
-    let law = 'lanchester';
-    let implementation = 'TODO';
-    let timePerBattle = 120;
-    this.settings = new Settings(armyA, armyB, law, implementation, timePerBattle);*/
+    );
   }
 
-  public updateSize(attrition: any): void {
-    if (attrition.b > attrition.a) {
-      this.settings.armyA.wins += 1
-    } else if (attrition.a > attrition.b) {
-      this.settings.armyB.wins += 1
-    }
-    this.settings.armyA.size = this.settings.armyA.size - attrition.a;
-    if (this.settings.armyA.size <= 0) {
+  public updateSize(report: any): any {
+    let totalA = 0;
+    totalA += report.a1;
+    totalA += report.a2;
+    totalA += report.a3;
+    let newScoreA = this.settings.armyA.size - totalA;
+    if (newScoreA < 0) {
       this.settings.armyA.size = 0;
-      this.enableBattle = false;
-      this.gameOver(this.settings.armyB);
+    } else {
+      this.settings.armyA.size = newScoreA;
     }
-    this.data[0].series.push({
-      'name': this.data[0].series.length,
-      'value': this.settings.armyA.size
-    });
-    this.settings.armyB.size = this.settings.armyB.size - attrition.b;
-    if (this.settings.armyB.size <= 0) {
+    this.settings.armyA.history.push(this.settings.armyA.size)
+
+    let totalB = 0;
+    totalB += report.b1;
+    totalB += report.b2;
+    totalB += report.b3;
+    let newScoreB = this.settings.armyB.size - totalB;
+    if (newScoreB < 0) {
       this.settings.armyB.size = 0;
-      this.enableBattle = false;
-      this.gameOver(this.settings.armyA);
+    } else {
+      this.settings.armyB.size = newScoreB;
     }
-    this.data[1].series.push({
-      'name': this.data[1].series.length,
-      'value': this.settings.armyB.size
-    });
-    this.data = [...this.data];
+    this.settings.armyB.history.push(this.settings.armyB.size)
+
+    this.settings.armyA.firstUnit.size = this.settings.armyA.firstUnit.size - report.a1;
+    if (this.settings.armyA.firstUnit.size <= 0) {
+      this.gameOver(this.settings.armyB)
+      return
+    }
+    this.settings.armyA.secondUnit.size = this.settings.armyA.secondUnit.size - report.a2;
+    if (this.settings.armyA.secondUnit.size <= 0) {
+      this.gameOver(this.settings.armyB)
+      return
+    }
+    this.settings.armyA.thirdUnit.size = this.settings.armyA.thirdUnit.size - report.a3;
+    if (this.settings.armyA.thirdUnit.size <= 0) {
+      this.gameOver(this.settings.armyB)
+      return
+    }
+
+    this.settings.armyB.firstUnit.size = this.settings.armyB.firstUnit.size - report.b1;
+    if (this.settings.armyB.firstUnit.size <= 0) {
+      this.gameOver(this.settings.armyA)
+      return
+    }
+    this.settings.armyB.secondUnit.size = this.settings.armyB.secondUnit.size - report.b2;
+    if (this.settings.armyB.secondUnit.size <= 0) {
+      this.gameOver(this.settings.armyA)
+      return
+    }
+    this.settings.armyB.thirdUnit.size = this.settings.armyB.thirdUnit.size - report.b3;
+    if (this.settings.armyB.thirdUnit.size <= 0) {
+      this.gameOver(this.settings.armyA)
+      return
+    }
+
+    let totalFirst = this.settings.armyA.firstUnit.size + this.settings.armyB.firstUnit.size;
+    var newFirstA = (this.settings.armyA.firstUnit.size / totalFirst) * 100;
+    if (newFirstA >= 10 && newFirstA <= 90) {
+      this.settings.armyA.firstUnit.width = newFirstA;
+    } else if (newFirstA < 10) {
+      this.settings.armyA.firstUnit.width = 10;
+    } else if (newFirstA > 90) {
+      this.settings.armyA.firstUnit.width = 90;
+    }
+    var newFirstB = (this.settings.armyB.firstUnit.size / totalFirst) * 100;
+    if (newFirstB >= 10 && newFirstB <= 90) {
+      this.settings.armyB.firstUnit.width = newFirstB;
+    } else if (newFirstB < 10) {
+      this.settings.armyB.firstUnit.width = 10;
+    } else if (newFirstB > 90) {
+      this.settings.armyB.firstUnit.width = 90;
+    }
+
+    let totalSecond = this.settings.armyA.secondUnit.size + this.settings.armyB.secondUnit.size;
+    var newFirstA = (this.settings.armyA.secondUnit.size / totalSecond) * 100;
+    if (newFirstA >= 10 && newFirstA <= 90) {
+      this.settings.armyA.secondUnit.width = newFirstA;
+    } else if (newFirstA < 10) {
+      this.settings.armyA.secondUnit.width = 10;
+    } else if (newFirstA > 90) {
+      this.settings.armyA.secondUnit.width = 90;
+    }
+    var newFirstB = (this.settings.armyB.secondUnit.size / totalSecond) * 100;
+    if (newFirstB >= 10 && newFirstB <= 90) {
+      this.settings.armyB.secondUnit.width = newFirstB;
+    } else if (newFirstB < 10) {
+      this.settings.armyB.secondUnit.width = 10;
+    } else if (newFirstB > 90) {
+      this.settings.armyB.secondUnit.width = 90;
+    }
+
+    let totalThird = this.settings.armyA.thirdUnit.size + this.settings.armyB.thirdUnit.size;
+    var newFirstA = (this.settings.armyA.thirdUnit.size / totalThird) * 100;
+    if (newFirstA >= 10 && newFirstA <= 90) {
+      this.settings.armyA.thirdUnit.width = newFirstA;
+    } else if (newFirstA < 10) {
+      this.settings.armyA.thirdUnit.width = 10;
+    } else if (newFirstA > 90) {
+      this.settings.armyA.thirdUnit.width = 90;
+    }
+    var newFirstB = (this.settings.armyB.thirdUnit.size / totalThird) * 100;
+    if (newFirstB >= 10 && newFirstB <= 90) {
+      this.settings.armyB.thirdUnit.width = newFirstB;
+    } else if (newFirstB < 10) {
+      this.settings.armyB.thirdUnit.width = 10;
+    } else if (newFirstB > 90) {
+      this.settings.armyB.thirdUnit.width = 90;
+    }
+
+    this.showAttrition = true;
+    setTimeout(() => this.showAttrition = false, 1500);
+
   }
 
   private gameOver(winner: Army): void {
-    let heading = 'War is over!';
-    let message = `${winner.name} has won a total of ${winner.wins} battles and has thus also won the war.`;
-    this.toastr.success(message, heading, {disableTimeOut: true, positionClass: 'toast-bottom-center'});
-  }
-
-  private setupPlot(): void {
-    this.autoScale = false;
-    this.showXAxis = true;
-    this.showYAxis = true;
-    this.gradient = false;
-    this.showLegend = false;
-    this.showXAxisLabel = true;
-    this.showYAxisLabel = true;
-    this.xScaleMax = 20;
-    this.xAxisLabel = 'Battle';
-    this.yAxisLabel = 'Army size, in persons';
-    this.colorScheme = {
-      domain: ['#ff6666', '#aec6cf']
+    this.settings.winner = winner;
+    let settings: NavigationExtras = {
+      state: this.settings
     };
-    this.data = [
-      {
-        'name': this.settings.armyA.name,
-        'series': [{
-          'name': 1,
-          'value': this.settings.armyA.size
-        }]
-      },
-      {
-        'name': this.settings.armyB.name,
-        'series': [{
-          'name': 1,
-          'value': this.settings.armyB.size
-        }]
-      }
-    ];
+    this.router.navigate(['/result'], settings);
   }
 
   public ngOnInit(): void {
     this.enableBattle = true;
-    this.setupPlot();
+    this.showAttrition = false;
   }
 
 }

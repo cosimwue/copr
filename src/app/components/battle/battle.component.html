@@ -3,7 +3,7 @@
     <h4
       class="modal-title"
       id="modal-basic-title">
-      <img src="/assets/cannon.svg" width="35">
+      <img src="/assets/cannon.svg" width="35"> New Battle
     </h4>
     <button
       type="button"
@@ -20,13 +20,20 @@
           <ngb-tab>
             <ng-template ngbTabTitle><b>Secret Specifications</b></ng-template>
             <ng-template ngbTabContent>
+              <div class="row content" style="margin-top: 30px;">
+                <div class="col">
+                    Secret decisions must be made. Once each side has chosen, <b>fire</b>!
+                </div>
+              </div>
               <div class="row content">
                 <div class="col">
                   <button
+                    [disabled]="availableA - settings.armyA.firstUnit.size - settings.armyA.secondUnit.size - settings.armyA.thirdUnit.size < 0 || availableB - settings.armyB.firstUnit.size - settings.armyB.secondUnit.size - settings.armyB.thirdUnit.size < 0"
+                    style="margin-bottom: -15px; margin-top: 30px; width: 200px;"
                     type="button"
-                    class="btn  btn-lg btn-danger"
+                    class="btn btn-danger center-btn"
                     (click)="startBattle()">
-                    Attack!
+                    <img src="assets/fire.svg" height="70px" class="fire">
                   </button>
                 </div>
               </div>
@@ -34,85 +41,158 @@
           </ngb-tab>
           <ngb-tab [title]="settings.armyA.name">
             <ng-template ngbTabContent>
-              <div class="form-row content">
-                <div class="form-group col-md-6">
-                  <label for="sizeA">Size</label>
-                  <input
-                    [(ngModel)]="unitA.size"
-                    [disabled]="formDisableA"
-                    type="number"
-                    class="form-control"
-                    id="sizeA"
-                    name="sizeA"
-                    min="1">
-                  <small class="text-mute">A total of {{ settings.armyA.size }} men are at your service.</small>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="powerA">Power</label>
-                  <input
-                    [(ngModel)]="unitA.power"
-                    [disabled]="formDisableA"
-                    type="number"
-                    class="form-control"
-                    id="powerA"
-                    name="powerA"
-                    min="0.1"
-                    max="1"
-                    step="0.1">
-                  <small *ngIf="settings.law === 'lanchester'" class="text-mute">The attack will take the enemy {{ unitA.size * unitA.power }} men.</small>
-                  <small *ngIf="settings.law === 'osipov'" class="text-mute">The attack will take the enemy {{ (unitA.size * unitA.power) / unitB.size }} men.</small>
+              <div class="content" style="margin-bottom: 30px;">
+                <b class="text-mute">Available men</b>: {{ availableA - settings.armyA.firstUnit.size - settings.armyA.secondUnit.size - settings.armyA.thirdUnit.size }}
+                <div style="margin-top: 15px;" class="alert alert-danger" role="alert" *ngIf="availableA - settings.armyA.firstUnit.size - settings.armyA.secondUnit.size - settings.armyA.thirdUnit.size < 0">
+                  You've spread {{ (availableA - settings.armyA.firstUnit.size - settings.armyA.secondUnit.size - settings.armyA.thirdUnit.size) * -1 }} men too much over the trenches!
                 </div>
               </div>
-              <div class="row">
-                <div class="col">
-                  <button class="btn btn-light btn-clock disabled">
-                    <i class="far fa-clock clock"></i>
-                    <countdown
-                      [config]="countdownConfigA"
-                      (finished)="disableForms('a')">
-                    </countdown>
-                  </button>
+              <div class="form-row content">
+                <div class="form-group col-md">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input
+                          type="checkbox"
+                          id="firstUnitCombatA"
+                          name="firstUnitCombatA"
+                          [(ngModel)]="settings.armyA.firstUnit.combat">
+                          <span style="margin-left: 5px;">Combat</span>
+                      </div>
+                    </div>
+                    <input
+                      [(ngModel)]="settings.armyA.firstUnit.size"
+                      type="number"
+                      class="form-control"
+                      id="firstUnitSizeA"
+                      name="firstUnitSizeA"
+                      min="1">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row" style="margin-top: -15px;">
+                <div class="form-group col-md">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input
+                          type="checkbox"
+                          id="secondUnitCombatA"
+                          name="secondUnitCombatA"
+                          [(ngModel)]="settings.armyA.secondUnit.combat">
+                          <span style="margin-left: 5px;">Combat</span>
+                      </div>
+                    </div>
+                    <input
+                      [(ngModel)]="settings.armyA.secondUnit.size"
+                      type="number"
+                      class="form-control"
+                      id="secondUnitSizeA"
+                      name="secondUnitSizeA"
+                      min="1">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input
+                          type="checkbox"
+                          id="thirdUnitCombatA"
+                          name="thirdUnitCombatA"
+                          [(ngModel)]="settings.armyA.thirdUnit.combat">
+                          <span style="margin-left: 5px;">Combat</span>
+                      </div>
+                    </div>
+                    <input
+                      [(ngModel)]="settings.armyA.thirdUnit.size"
+                      type="number"
+                      class="form-control"
+                      id="thirdUnitSizeA"
+                      name="thirdUnitSizeA"
+                      min="1">
+                  </div>
                 </div>
               </div>
             </ng-template>
           </ngb-tab>
           <ngb-tab [title]="settings.armyB.name">
             <ng-template ngbTabContent>
-              <div class="form-row content">
-                <div class="form-group col-md-6">
-                  <label for="sizeB">Size</label>
-                  <input
-                    [(ngModel)]="unitB.size"
-                    type="number"
-                    class="form-control"
-                    id="sizeB"
-                    name="sizeB"
-                    min="1">
-                  <small class="text-mute">A total of {{ settings.armyB.size }} men are at your service.</small>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="powerB">Power</label>
-                  <input
-                    [(ngModel)]="unitB.power"
-                    type="number"
-                    class="form-control"
-                    id="powerB"
-                    name="powerB"
-                    min="0.1"
-                    max="1"
-                    step="0.1">
-                  <small class="text-mute">The attack will take the enemy {{ unitB.size * unitB.power }} men.</small>
+              <div class="content" style="margin-bottom: 30px;">
+                <b class="text-mute">Available men</b>: {{ availableB - settings.armyB.firstUnit.size - settings.armyB.secondUnit.size - settings.armyB.thirdUnit.size }}
+                <div style="margin-top: 15px;" class="alert alert-danger" role="alert" *ngIf="availableA - settings.armyB.firstUnit.size - settings.armyB.secondUnit.size - settings.armyB.thirdUnit.size < 0">
+                  You've spread {{ (availableB - settings.armyB.firstUnit.size - settings.armyB.secondUnit.size - settings.armyB.thirdUnit.size) * -1 }} men too much over the trenches!
                 </div>
               </div>
-              <div class="row">
-                <div class="col">
-                  <button class="btn btn-light btn-clock disabled">
-                    <i class="far fa-clock clock"></i>
-                    <countdown
-                      [config]="countdownConfigB"
-                      (finished)="disableForms('b')">
-                    </countdown>
-                  </button>
+              <div class="form-row content">
+                <div class="form-group col-md">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input
+                          type="checkbox"
+                          id="firstUnitCombatB"
+                          name="firstUnitCombatB"
+                          [(ngModel)]="settings.armyB.firstUnit.combat">
+                          <span style="margin-left: 5px;">Combat</span>
+                      </div>
+                    </div>
+                    <input
+                      [(ngModel)]="settings.armyB.firstUnit.size"
+                      type="number"
+                      class="form-control"
+                      id="firstUnitSizeB"
+                      name="firstUnitSizeB"
+                      min="1">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row" style="margin-top: -15px;">
+                <div class="form-group col-md">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input
+                          type="checkbox"
+                          id="secondUnitCombatB"
+                          name="secondUnitCombatB"
+                          [(ngModel)]="settings.armyB.secondUnit.combat">
+                          <span style="margin-left: 5px;">Combat</span>
+                      </div>
+                    </div>
+                    <input
+                      [(ngModel)]="settings.armyB.secondUnit.size"
+                      type="number"
+                      class="form-control"
+                      id="secondUnitSizeB"
+                      name="secondUnitSizeB"
+                      min="1">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input
+                          type="checkbox"
+                          id="thirdUnitCombatB"
+                          name="thirdUnitCombatB"
+                          [(ngModel)]="settings.armyB.thirdUnit.combat">
+                          <span style="margin-left: 5px;">Combat</span>
+                      </div>
+                    </div>
+                    <input
+                      [(ngModel)]="settings.armyB.thirdUnit.size"
+                      type="number"
+                      class="form-control"
+                      id="thirdUnitSizeB"
+                      name="thirdUnitSizeB"
+                      min="1">
+                  </div>
                 </div>
               </div>
             </ng-template>
@@ -125,7 +205,7 @@
 
 <button
   [disabled]="!enableBattle"
-  class="btn btn-dark btn-left btn-battle"
+  class="btn btn-dark btn-lg btn-left btn-battle"
   (click)="open(content)">
-  <img src="/assets/soldier.svg" class="invert" width="50">
+  New Battle
 </button>

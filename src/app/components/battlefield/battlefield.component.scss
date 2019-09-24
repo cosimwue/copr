@@ -1,0 +1,25 @@
+.battlefield {
+    margin-bottom: 15px;
+}
+
+.side-b {
+    border-bottom: solid 15px;
+    border-color: rgb(119, 158, 203, 0.8);
+}
+
+.side-a {
+    border-bottom: solid 15px;
+    border-color: rgb(194, 59, 34, 0.8);
+}
+
+.basic {
+    padding: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.icon-b {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}

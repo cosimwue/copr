@@ -1,12 +1,6 @@
 .btn-battle {
-    width: 100%;
-}
-
-.btn-clock {
-    cursor: default;
-    color: black;
-    background-color: white;
-    border: none;
+    width: 300px;
+    margin-top: 85px;
 }
 
 .invert {
@@ -15,4 +9,14 @@
 
 .clock {
     margin-right: 5px;
+}
+
+.center-btn {
+    display: block;
+    margin: 0 auto;
+}
+
+.fire {
+   -webkit-filter: invert(1);
+   filter: invert(1);
 }

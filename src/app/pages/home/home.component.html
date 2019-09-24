@@ -1,5 +1,5 @@
-<div class="container-fluid content">
-  <div class="row">
+<div class="container-fluid settings-card-container" style="margin-top: 42px;">
+  <div class="row settings-card">
     <div class="col"></div>
     <div class="col-7">
       <div class="card">
@@ -10,7 +10,7 @@
           <form class="card-text settings">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="nameA">Army A</label>
+                <label for="nameA">Army <i class="fas fa-square army-a"></i></label>
                 <input
                   [(ngModel)]="settings.armyA.name"
                   type="text"
@@ -19,7 +19,7 @@
                   name="nameA">
               </div>
               <div class="form-group col-md-6">
-                <label for="nameB">Army B</label>
+                <label for="nameB">Army <i class="fas fa-square army-b"></i></label>
                 <input
                   [(ngModel)]="settings.armyB.name"
                   type="text"
@@ -30,7 +30,7 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="sizeA">Size</label>
+                <label for="sizeA">Size  <small class="text-muted">(in persons)</small></label>
                 <input
                   [(ngModel)]="settings.armyA.size"
                   type="number"
@@ -40,7 +40,7 @@
                   min="1">
               </div>
               <div class="form-group col-md-6">
-                <label for="sizeB">Size</label>
+                <label for="sizeB">Size  <small class="text-muted">(in persons)</small></label>
                 <input
                   [(ngModel)]="settings.armyB.size"
                   type="number"
@@ -50,9 +50,51 @@
                   min="1">
               </div>
             </div>
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="combatPowerA">Power <small class="text-muted">(combat)</small></label>
+                <input
+                  [(ngModel)]="settings.armyA.combatPower"
+                  type="number"
+                  step="0.1"
+                  class="form-control"
+                  id="combatPowerA"
+                  name="combatPowerA">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="defencePowerA">Power <small class="text-muted">(defence)</small></label>
+                <input
+                  [(ngModel)]="settings.armyA.defencePower"
+                  type="number"
+                  step="0.1"
+                  class="form-control"
+                  id="defencePowerA"
+                  name="defencePowerA">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="combatPowerB">Power <small class="text-muted">(combat)</small></label>
+                <input
+                  [(ngModel)]="settings.armyB.combatPower"
+                  type="number"
+                  step="0.1"
+                  class="form-control"
+                  id="combatPowerB"
+                  name="combatPowerB">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="defencePowerB">Power <small class="text-muted">(defence)</small></label>
+                <input
+                  [(ngModel)]="settings.armyB.defencePower"
+                  type="number"
+                  step="0.1"
+                  class="form-control"
+                  id="defencePowerB"
+                  name="defencePowerB">
+              </div>
+            </div>
             <hr>
             <div class="form-row">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-12">
                 <label for="law">Law</label>
                 <select
                   [(ngModel)]="settings.law"
@@ -64,16 +106,6 @@
                   <option value="custom">Custom</option>
                 </select>
               </div>
-              <div class="form-group col-md-6">
-                <label for="timePerBattle">Time per battle <small class="text-muted">(in seconds)</small></label>
-                <input
-                  [(ngModel)]="settings.timePerBattle"
-                  type="number"
-                  class="form-control"
-                  id="timePerBattle"
-                  name="timePerBattle"
-                  min="1">
-              </div>
             </div>
             <div class="form-group implementation" *ngIf="settings.law === 'custom'">
               <div class="alert alert-info" role="alert">
@@ -81,14 +113,13 @@
                   Implement a function in JavaScript that calculates the attrition of a unit.
                 </h6>
                 <p>
-                  The function provides an <code>attacker</code> and an <code>attacked</code> object with the following properties:
+                  <ng-katex-paragraph [paragraph]="preParagraph"></ng-katex-paragraph>
+                  <ng-katex [equation]="equationA" [options]="options"></ng-katex>
+                  <ng-katex [equation]="equationB" [options]="options"></ng-katex>
+                  <ng-katex-paragraph [paragraph]="postParagraph"></ng-katex-paragraph>
                 </p>
-                <ul>
-                  <li><code>size</code>: Total size of the unit, an integer > 0.</li>
-                  <li><code>power</code>: Fighting power, a float > 0 and ≤ 1.</li>
-                </ul>
-                <p class="mb-0">
-                  <i class="fas fa-exclamation-circle"></i> Write only the function’s body and return an integer, the attrition.
+                <p>
+                  However, your custom function provides an <code>attacker</code> and an <code>attacked</code> object with properties <code>power</code> (a float > 0 and ≤ 1) and <code>size</code> (an integer > 0), and should return the total number of lost soldiers of the attacked force.
                 </p>
               </div>
               <textarea
@@ -98,7 +129,7 @@
                 rows="3"></textarea>
             </div>
           </form>
-          <button class="btn btn-secondary" (click)="startGame()">
+          <button class="btn btn-dark" (click)="startGame()" style="margin-top: 5px;">
             Ludi incipiant
           </button>
         </div>
