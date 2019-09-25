@@ -1,5 +1,5 @@
 {
-  "productName": "COPR",
+  "productName": "copr",
   "directories": {
     "output": "release/"
   },
@@ -11,9 +11,13 @@
         "!package.json",
         "!package-lock.json",
         "!src/",
+        "!e2e/",
         "!hooks/",
         "!angular.json",
-        "!tsconfig.json"
+        "!_config.yml",
+        "!karma.conf.js",
+        "!tsconfig.json",
+        "!tslint.json"
     ],
   "win": {
     "icon": "dist",
