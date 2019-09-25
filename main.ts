@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -11,11 +11,12 @@ function createWindow() {
     center: true,
     resizable: false,
     fullscreenable: false,
-    //icon: path.join(__dirname, 'src/assets/copr-logo.svg'),
+    icon: path.join(__dirname, 'src/favicon.png'),
     width: 1200,
     height: 640,
     webPreferences: {
       nodeIntegration: true,
+      zoomFactor: 0.95
     },
   });
 
