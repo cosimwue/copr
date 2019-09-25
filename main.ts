@@ -11,7 +11,7 @@ function createWindow() {
     center: true,
     resizable: false,
     fullscreenable: false,
-    //icon: path.join(__dirname, 'src/assets/angular-electron-logo.svg'),
+    icon: path.join(__dirname, 'src/favicon.png'),
     width: 1200,
     height: 640,
     webPreferences: {
