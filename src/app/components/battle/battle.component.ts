@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Settings, Unit } from '../../models';
 
-import { random } from 'random';
+const random = require('random');
 
 
 @Component({
