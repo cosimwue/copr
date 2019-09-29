@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Settings, Army } from '../../models';
+import { Settings } from '../../models';
 
 
 @Component({

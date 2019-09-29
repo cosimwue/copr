@@ -1,4 +1,4 @@
-<div class="container-fluid settings-card-container" style="margin-top: 25px;">
+<div class="container-fluid settings-card-container" style="margin-top: 42px;">
   <div class="row settings-card">
     <div class="col"></div>
     <div class="col-7">
@@ -95,14 +95,14 @@
             <hr>
             <div class="form-row">
               <div class="form-group col-md-12">
-                <label for="law">Law</label>
+                <label for="law">Law <i class="fas fa-question-circle" placement="right" ngbTooltip="If you choose the deterministic Lanchester-Osipov law, the loss is calculated in a deterministic way. If you choose the probabilistic one, chance decides for every man whether he survives or not."></i></label>
                 <select
                   [(ngModel)]="settings.law"
                   class="custom-select"
                   id="law"
                   name="law">
-                  <option value="lanchester">Lanchester</option>
-                  <option value="osipov">Osipov</option>
+                  <option value="lanchester">Lanchester-Osipov (deterministic)</option>
+                  <option value="osipov">Lanchester-Osipov (probabilistic)</option>
                   <option value="custom">Custom</option>
                 </select>
               </div>
@@ -119,7 +119,7 @@
                   <ng-katex-paragraph [paragraph]="postParagraph"></ng-katex-paragraph>
                 </p>
                 <p>
-                  However, your custom function provides an <code>attacker</code> and an <code>attacked</code> object with properties <code>size</code> (an integer > 0), <code>combatPower</code> (a float > 0 and ≤ 1), <code>defencePower</code> (also a float > 0 and ≤ 1), and should return the total number of lost soldiers of the attacked force.
+                  However, your custom function provides an <code>attacker</code> and an <code>attacked</code> object with properties <code>size</code> (an integer > 0), <code>combatPower</code> (a float > 0 and ≤ 1), <code>defencePower</code> (also a float > 0 and ≤ 1), <code>combat</code> (a boolean, true if the unit is in combat, false if in defence), and should return the total number of lost soldiers of the attacked force.
                 </p>
               </div>
               <textarea

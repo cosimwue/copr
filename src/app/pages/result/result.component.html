@@ -26,13 +26,13 @@
               <i class="fas fa-square army-a"></i> {{ settings.armyA.name }} <span *ngIf="settings.winner.name === settings.armyA.name" class="float-right"><i class="fas fa-trophy text-warning"></i></span>
             </h5>
             <div>
-              <span *ngIf="settings.winner.name === settings.armyA.name" style="font-weight: bold;">Winner!</span> {{ settings.armyA.size }} men at service.
+              <span *ngIf="settings.winner.name === settings.armyA.name" style="font-weight: bold;">Winner!</span> Still {{ settings.armyA.size }} men at service.
             </div>
             <div>
               <table class="table table-sm" style="margin-top: 15px;">
                 <thead>
                   <tr>
-                    <th scope="col">Fire trench</th>
+                    <th scope="col">Battlefield</th>
                     <th scope="col">Men left</th>
                   </tr>
                 </thead>
@@ -58,13 +58,13 @@
               <i class="fas fa-square army-b"></i> {{ settings.armyB.name }} <span *ngIf="settings.winner.name === settings.armyB.name" class="float-right"><i class="fas fa-trophy text-warning"></i></span>
             </h5>
             <div>
-              <span *ngIf="settings.winner.name === settings.armyB.name" style="font-weight: bold;">Winner!</span> {{ settings.armyB.size }} men at service.
+              <span *ngIf="settings.winner.name === settings.armyB.name" style="font-weight: bold;">Winner!</span> Still {{ settings.armyB.size }} men at service.
             </div>
             <div>
               <table class="table table-sm" style="margin-top: 15px; margin-bottom: -5px;">
                 <thead>
                   <tr>
-                    <th scope="col">Fire trench</th>
+                    <th scope="col">Battlefield</th>
                     <th scope="col">Men left</th>
                   </tr>
                 </thead>

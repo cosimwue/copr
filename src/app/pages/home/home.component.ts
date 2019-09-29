@@ -35,15 +35,15 @@ export class HomeComponent implements OnInit {
     let implementation = '// Write only the function\'s body and return an integer\n\nreturn attacker.combatPower * attacker.size;';
     this.settings = new Settings(armyA, armyB, law, implementation);
     this.options = { displayMode: true };
-    this.equationA = '\\frac{dA}{dt} = -\\beta B';
-    this.equationB = '\\frac{dB}{dt} = -\\alpha A';
+    this.equationA = '\\frac{db}{dt} = -r \\times c';
+    this.equationB = '\\frac{dr}{dt} = -b \\times k';
     this.preParagraph = `
     For example, Lanchester’s Square Law calculates the number of soldiers lost using two simple equations, where 
-    $A$ represents the number of soldiers with firepower $\\alpha$ in the one force, and $B$ with 
-    $\\beta$ in the other.
+    $r$ represents the number of soldiers with firepower $c$ in the one force, and $b$ with 
+    $k$ in the other.
     `;
     this.postParagraph = `
-    $\\frac{dA}{dt}$ or $\\frac{dB}{dt}$ represents the rate at which the number 
+    $\\frac{db}{dt}$ or $\\frac{dr}{dt}$ represents the rate at which the number 
     of soldiers is changing at a particular instant. A negative value indicates the loss of soldiers.
     `;
   }
