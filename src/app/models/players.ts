@@ -1,6 +1,5 @@
 export class Unit {
   size: number
-  power: number
   combatPower: number
   defencePower: number
   combat: boolean

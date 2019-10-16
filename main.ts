@@ -9,8 +9,8 @@ serve = args.some(val => val === '--serve');
 function createWindow() {
   win = new BrowserWindow({
     center: true,
-    resizable: false,
-    fullscreenable: false,
+    resizable: true,
+    fullscreenable: true,
     icon: path.join(__dirname, 'src/favicon.png'),
     width: 1200,
     height: 640,

@@ -22,6 +22,20 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) { }
 
   public startGame(): void {
+    this.settings.armyA.firstUnit.combatPower = this.settings.armyA.combatPower;
+    this.settings.armyA.firstUnit.defencePower = this.settings.armyA.defencePower;
+    this.settings.armyA.secondUnit.combatPower = this.settings.armyA.combatPower;
+    this.settings.armyA.secondUnit.defencePower = this.settings.armyA.defencePower;
+    this.settings.armyA.thirdUnit.combatPower = this.settings.armyA.combatPower;
+    this.settings.armyA.thirdUnit.defencePower = this.settings.armyA.defencePower;
+
+    this.settings.armyB.firstUnit.combatPower = this.settings.armyB.combatPower;
+    this.settings.armyB.firstUnit.defencePower = this.settings.armyB.defencePower;
+    this.settings.armyB.secondUnit.combatPower = this.settings.armyB.combatPower;
+    this.settings.armyB.secondUnit.defencePower = this.settings.armyB.defencePower;
+    this.settings.armyB.thirdUnit.combatPower = this.settings.armyB.combatPower;
+    this.settings.armyB.thirdUnit.defencePower = this.settings.armyB.defencePower;
+
     let settings: NavigationExtras = {
       state: this.settings
     };
